@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Main() {
   const [email, setEmail] = useState("");
   return (
-    <div className="bannerContainer  ">
+    <div className="mt-10">
       {/* First section */}
       <div className="flex flex-col gap-2 h-[100vh] py-10">
         <div className="flex flex-col gap-4">
@@ -66,7 +66,7 @@ function Main() {
         <h1 className="text-headings text-6xl font-extrabold text-center">
           Discover an Entire different Development space
         </h1>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center gap-10">
           <p className="text-subtitles text-xl text-center w-[30%]">
             Unleashing Your Potential, Building Your Profile and Thriving in the
             Tech Community

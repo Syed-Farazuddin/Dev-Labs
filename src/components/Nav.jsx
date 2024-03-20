@@ -4,12 +4,12 @@ import Logo from "../assets/D.png";
 import { Link } from "react-router-dom";
 function Nav() {
   return (
-    <div className="flex max-w-6xl mx-auto py-6 justify-between items-center ">
+    <div className="flex bg-slate-100 py-2 px-8 justify-between items-center ">
       <div className="flex items-center justify-center">
-        <img className="h-20 w-20" src={Logo} alt="" />
+        <img className="h-14 w-14" src={Logo} alt="" />
         <p className="text-[30px]">ev Labs</p>
       </div>
-      <div className="flex items-center justify-center border-slate-200 border-[2px] px-4 py-2 rounded-lg">
+      <div className="flex items-center justify-center px-4 py-2 rounded-lg bg-white">
         <input
           type="text"
           className="border-none outline-none"
