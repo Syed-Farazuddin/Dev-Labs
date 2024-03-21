@@ -1,5 +1,35 @@
 import React from "react";
-
+import logo from "../../assets/D.png";
 export default function Login() {
-  return <div>Login</div>;
+  return (
+    <div className="flex items-center justify-center h-[100vh] flex-col">
+      <h1 className="text-xl mb-4 font-bold flex justify-center items-end gap-2">
+        Sign in to{" "}
+        <div className="flex justify-center items-end ml-2">
+          <img className="w-10 h-10" src={logo} alt="" />
+          <p>ev Labs</p>
+        </div>
+      </h1>
+      <div className="p-10 flex flex-col  gap-5 bg-slate-200 rounded-lg">
+        <div className="flex flex-col">
+          <label htmlFor="Email">Username or email address</label>
+          <input
+            type="email"
+            className="px-4 py-2 rounded-lg border-2 border-slate-400 outline-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            className="px-4 py-2 rounded-lg border-2 border-slate-400 outline-blue-500 "
+          />
+        </div>
+
+        <button className="px-4 py-2 w-full bg-buttonBlue rounded-lg">
+          Sign In
+        </button>
+      </div>
+    </div>
+  );
 }
