@@ -9,3 +9,27 @@
   font-family: "Averia Serif Libre", serif;
   margin: 0;
 }
+.registerContainer {
+  background: rgb(2, 0, 36);
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 128, 156, 1) 0%,
+    rgba(1, 1, 8, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+.normalRegister {
+  background: rgb(0, 0, 0);
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(24, 24, 24, 1) 24%,
+    rgba(56, 56, 56, 1) 81%,
+    rgba(54, 54, 54, 1) 100%,
+    rgba(221, 221, 221, 1) 100%,
+    rgba(221, 221, 221, 1) 100%,
+    rgba(192, 192, 192, 1) 100%,
+    rgba(221, 221, 221, 1) 100%
+  );
+}
