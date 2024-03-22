@@ -284,32 +284,51 @@ function AnimatedRegister() {
       </div>
       {/* Validation messages */}
       <div className="mt-5 text-slate-400 h-30 flex justify-center items-center flex-col gap-2">
-        {IsValidEmail ? (
-          <p className="text-center"> </p>
-        ) : (
+        {/* Email validation */}
+
+        {!emailChoosen && (
           <>
-            <p className="text-center">
-              Your email is invalid or already choosen
-            </p>
+            {IsValidEmail ? (
+              <>
+                <p className="text-center"></p>
+              </>
+            ) : (
+              <>
+                <p className="text-center">
+                  Your email is invalid or already choosen
+                </p>
+              </>
+            )}
           </>
         )}
-        {isValidPassword ? (
-          ""
-        ) : (
+        {/* Password validation */}
+        {emailChoosen && (
           <>
-            <p className="text-center w-[50%] capitalize">
-              Password much contains least 8 characters, containing at least one
-              uppercase letter, one lowercase letter, and one digit
-            </p>
+            {isValidPassword ? (
+              ""
+            ) : (
+              <>
+                <p className="text-center w-[80%] capitalize h-20">
+                  Password much contains least 8 characters, containing at least
+                  one uppercase letter, one lowercase letter, and one digit
+                </p>
+              </>
+            )}
           </>
         )}
-        {isValidUser ? (
-          <p className="text-center"> </p>
-        ) : (
+        {/* Username validation */}
+        {passwordChoose && (
           <>
-            <p className="text-center capitalize w-[50%]">
-              This user name is already taken! Please user different username
-            </p>
+            {isValidUser ? (
+              <p className="text-center"> </p>
+            ) : (
+              <>
+                <p className="text-center capitalize w-[80%]">
+                  This user name is already taken! Please user different
+                  username
+                </p>
+              </>
+            )}
           </>
         )}
       </div>
