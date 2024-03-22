@@ -1,11 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import logo from "../../assets/D.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 export default function Login() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
+  const handleSignIn = async () => {
+    const response = await axios.post("http://localhost:4000/login", {
+      name,
+      password,
+    });
+    const { data } = response;
+    if (data.success) {
+      navigate("/");
+    }
+  };
   return (
     <div className="flex items-center justify-center h-[100vh] flex-col loginContainer">
       <div className="flex fixed top-0 right-0 left-0  py-4 px-6 justify-between items-center">
@@ -53,7 +64,10 @@ export default function Login() {
           />
         </div>
 
-        <button className="px-4 py-2 w-full bg-green-700 rounded-lg text-white">
+        <button
+          className="px-4 py-2 w-full bg-green-700 rounded-lg text-white"
+          onClick={handleSignIn}
+        >
           Sign In
         </button>
       </div>

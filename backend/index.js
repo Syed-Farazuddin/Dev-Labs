@@ -8,11 +8,14 @@ const {
   registerController,
   findMail,
   findUserName,
+  loginController,
 } = require("./controllers/AuthControllers.js");
 app.use(cors());
 app.use(express.json());
 
 connectDB();
+
+app.post("/login", loginController);
 
 app.post("/register", registerController);
 
