@@ -25,16 +25,15 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .normalRegister {
-  background: rgb(0, 0, 0);
-  background: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(24, 24, 24, 1) 24%,
-    rgba(56, 56, 56, 1) 81%,
-    rgba(54, 54, 54, 1) 100%,
-    rgba(221, 221, 221, 1) 100%,
-    rgba(221, 221, 221, 1) 100%,
-    rgba(192, 192, 192, 1) 100%,
-    rgba(221, 221, 221, 1) 100%
-  );
+  background: #eecda3; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ef629f,
+    #eecda3
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ef629f,
+    #eecda3
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }

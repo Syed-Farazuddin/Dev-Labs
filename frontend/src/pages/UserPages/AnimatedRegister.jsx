@@ -66,10 +66,10 @@ function AnimatedRegister() {
   return (
     <div className="flex items-center justify-center h-[110vh] flex-col registerContainer">
       <div className="flex fixed top-0 right-0 left-0  py-4 px-6 justify-between items-center">
-        <div className="flex items-center justify-end text-white cursor-pointer">
+        <Link to={'/'} className="flex items-center justify-end text-white cursor-pointer">
           <span className="text-4xl">D</span>
           <p className="text-xl">ev Labs</p>
-        </div>
+        </Link>
         <Link to={"/login"} className="flex text-white gap-4">
           <p className="text-slate-400">Already have an Account ?</p>
           <span className="hover:underline cursor-pointer">Sign in</span>

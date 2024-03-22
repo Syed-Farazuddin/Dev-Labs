@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import logo from "../../assets/D.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 function Register() {
   const [email, setEmail] = useState("");
@@ -19,48 +19,77 @@ function Register() {
   return (
     <div className="flex items-center justify-center h-[100vh] flex-col normalRegister">
       <div className="flex fixed top-0 right-0 left-0  py-4 px-6 justify-between items-center">
-        <div className="flex items-center justify-end">
+        <Link to={"/"} className="flex items-center justify-end">
           <img className="h-10 w-10" src={logo} alt="" />
           <p>ev Labs</p>
-        </div>
-        <div className="flex text-white gap-4">
-          <p className="text-slate-400">Already have an Account ?</p>
-          <span className="hover:underline cursor-pointer">Sign in</span>
+        </Link>
+        <div className="flex gap-4 items-center justify-center">
+          <p className="text-slate-900">Already have an Account ?</p>
+          <Link
+            to={"/login"}
+            className="text-slate-900 cursor-pointer border-slate-700 border-2 px-2 py-1 rounded-md"
+          >
+            Sign in
+          </Link>
         </div>
       </div>
-      <h1 className="text-xl mb-4 font-bold flex justify-center items-end gap-2 text-white">
+      <h1 className="text-xl mb-4 font-bold flex justify-center items-end gap-2 text-black">
         Welcome to
-        <div className="flex justify-center items-end ml-2">
+        {/* <div className="flex justify-center items-end ml-2">
           <p className="text-white">Dev Labs</p>
+        </div> */}
+        <div className="flex items-center justify-end">
+          <img className="h-10 w-10" src={logo} alt="" />
+          <p className="text-black">ev Labs</p>
         </div>
       </h1>
-      <div className="p-10 flex flex-col  gap-5 bg-slate-500 rounded-lg">
-        <h1>Sign up</h1>
+      <div className="p-10 flex flex-col  gap-5 bg-[#ffffff25] rounded-lg">
+        <h1 className="text-2xl text-slate-600 font-bold">Sign up</h1>
         <div className="flex flex-col gap-2">
-          <label htmlFor="Email">Email address</label>
+          {/* <label htmlFor="Email" className="text-slate-600 font-bold">
+            Email address
+          </label> */}
           <input
             type="email"
             value={email}
+            placeholder="Enter your email address"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            className="px-4 py-2 rounded-lg border-2 border-slate-400 outline-blue-500"
+            className="px-4 py-2 rounded-lg bg-[#ffffff40] outline-[#ffffff02]  placeholder:text-slate-600"
           />
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="password">Password</label>
+          {/* <label htmlFor="password" className="text-slate-600 font-bold">
+            Password
+          </label> */}
           <input
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            placeholder="Create your password"
             type="password"
-            className="px-4 py-2 rounded-lg border-2 border-slate-400 outline-blue-500 "
+            className="px-4 py-2 rounded-lg bg-[#ffffff40] outline-[#ffffff02]  placeholder:text-slate-600"
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          {/* <label htmlFor="password" className="text-slate-600 font-bold">
+            Password
+          </label> */}
+          <input
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            placeholder="Create your user name"
+            type="text"
+            className="px-4 py-2 rounded-lg bg-[#ffffff40] outline-[#ffffff02]  placeholder:text-slate-600"
           />
         </div>
 
         <button
-          className="px-4 py-2 w-full bg-buttonBlue rounded-lg text-white"
+          className="px-4 py-2 w-full bg-[#ef629f] rounded-lg text-white"
           onClick={() => {
             handleSubmit();
           }}
