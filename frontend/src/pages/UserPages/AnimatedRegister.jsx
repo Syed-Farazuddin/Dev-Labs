@@ -186,7 +186,7 @@ function AnimatedRegister() {
                       <button
                         className={
                           "px-4 py-2 rounded-lg text-white font-bold" +
-                          (isValidUser
+                          (isValidPassword
                             ? " border-[1px] border-green-400  cursor-pointer hover:bg-green-500 hover:text-black"
                             : " border-[1px] border-slate-200 opacity-50 cursor-default")
                         }
@@ -237,10 +237,10 @@ function AnimatedRegister() {
                       />
                       <button
                         className={
-                          "px-4 py-2 rounded-lg text-white" +
-                          (!IsValidEmail
-                            ? " border-[1px] border-green-200 opacity-50 cursor-auto"
-                            : " border-[1px] border-slate-200 ")
+                          "px-4 py-2 rounded-lg text-white font-bold" +
+                          (isValidUser
+                            ? " border-[1px] border-green-400  cursor-pointer hover:bg-green-500 hover:text-black"
+                            : " border-[1px] border-slate-200 opacity-50 cursor-default")
                         }
                         onClick={() => {
                           if (isValidUser) {
@@ -282,7 +282,9 @@ function AnimatedRegister() {
           </>
         )}
       </div>
+
       {/* Validation messages */}
+
       <div className="mt-5 text-slate-400 h-30 flex justify-center items-center flex-col gap-2">
         {/* Email validation */}
 
