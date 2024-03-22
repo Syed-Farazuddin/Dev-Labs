@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
 function AnimatedRegister() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +17,20 @@ function AnimatedRegister() {
   const [IsValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
   const [isValidUser, setIsValidUser] = useState(false);
+
+  // Handling submit
+
+  const handleSubmit = async () => {
+    const response = await axios.post("http://localhost:4000/register", {
+      email,
+      userName,
+      password,
+    });
+    console.log(response);
+    if (response.data.success) {
+      navigate("/login");
+    }
+  };
 
   // Regular expression for validating strong passwords
 
@@ -28,6 +44,8 @@ function AnimatedRegister() {
       setIsValidEmail(false);
     }
   };
+
+  // Checking whether email already registered
 
   async function ValidateEmail() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -47,6 +65,7 @@ function AnimatedRegister() {
       }
     }
   }
+  // Checking whether user name  already taken
 
   async function validateUserName() {
     try {
@@ -253,7 +272,10 @@ function AnimatedRegister() {
           <>
             <div className="flex justify-between items-center gap-2 text-white">
               <p className="text-blue-300">Hurray! Last step to sign up</p>
-              <button className="border-[1px] font-bold hover:bg-green-500 text-white rounded-lg border-green-500 px-2 py-2 ">
+              <button
+                className="border-[1px] font-bold hover:bg-green-500 text-white rounded-lg border-green-500 px-2 py-2 "
+                onClick={handleSubmit}
+              >
                 Sign up
               </button>
             </div>
