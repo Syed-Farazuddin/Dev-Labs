@@ -10,14 +10,19 @@
   margin: 0;
 }
 .registerContainer {
-  background: rgb(2, 0, 36);
-  background: radial-gradient(
-    circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(0, 128, 156, 1) 0%,
-    rgba(1, 1, 8, 1) 100%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: #0f0c29; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #24243e,
+    #302b63,
+    #0f0c29
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #24243e,
+    #302b63,
+    #0f0c29
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .normalRegister {
   background: rgb(0, 0, 0);
