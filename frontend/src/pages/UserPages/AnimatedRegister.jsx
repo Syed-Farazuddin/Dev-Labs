@@ -111,7 +111,7 @@ function AnimatedRegister() {
         </Link>
       </div>
 
-      <div className="p-10 flex flex-col border-2 border-[#ffffff07]  gap-5 rounded-lg w-[500px] bg-[#ffffff07]">
+      <div className="p-10 flex flex-col border-2 border-[#ffffff07]  gap-5 rounded-lg w-[500px] bg-[#ffffff10]">
         <h1 className="text-3xl font-bold text-slate-300">Sign up</h1>
 
         {/* Enter your email...... Email Field */}
