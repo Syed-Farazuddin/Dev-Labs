@@ -112,13 +112,13 @@ function AnimatedRegister() {
       </div>
 
       <div className="p-10 flex flex-col border-2 border-[#ffffff07]  gap-5 rounded-lg w-[500px] bg-[#ffffff07]">
-        <h1 className="text-2xl font-bold text-slate-300">Sign up</h1>
+        <h1 className="text-3xl font-bold text-slate-300">Sign up</h1>
 
         {/* Enter your email...... Email Field */}
 
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-2 ">
-            <label htmlFor="Email" className="text-[#36a8f4]">
+            <label htmlFor="Email" className="text-slate-300">
               Enter your Email address *
             </label>
             <div className="w-[400px] flex justify-between items-center bg-transparent gap-2">
@@ -186,7 +186,7 @@ function AnimatedRegister() {
                       <button
                         className={
                           "px-4 py-2 rounded-lg text-white font-bold" +
-                          (isValidPassword
+                          (isValidUser
                             ? " border-[1px] border-green-400  cursor-pointer hover:bg-green-500 hover:text-black"
                             : " border-[1px] border-slate-200 opacity-50 cursor-default")
                         }

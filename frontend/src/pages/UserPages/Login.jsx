@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 export default function Login() {
   const [name, setName] = useState("");
+  const [error, setError] = useState();
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const handleSignIn = async () => {
@@ -13,8 +14,12 @@ export default function Login() {
       password,
     });
     const { data } = response;
+    console.log(data);
     if (data.success) {
+      localStorage.setItem("auth", JSON.stringify(data));
       navigate("/");
+    } else {
+      setError(data.message);
     }
   };
   return (
@@ -70,6 +75,9 @@ export default function Login() {
         >
           Sign In
         </button>
+      </div>
+      <div className="errorMessages mt-5 uppercase">
+        <p className="h-5 text-red-500">{error}</p>
       </div>
     </div>
   );

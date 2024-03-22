@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const userModel = require("../Models/UserAuth");
+const json = require("jsonwebtoken");
+require("dotenv").config();
 
 const registerController = async (req, res) => {
   const { email, password, userName } = req.body;
@@ -32,14 +34,27 @@ const loginController = async (req, res) => {
     user = await userModel.findOne({ userName: name });
   }
   if (!user) {
-    return res.status(401).send({ message: "No user Found", success: false });
+    return res.send({ message: "No user Found", success: false });
   }
   const hashedpassword = user.password;
   const matchpass = await bcrypt.compare(password, hashedpassword);
   if (matchpass) {
-    return res.send({ success: true, user });
+    const token = await json.sign(
+      { _id: user._id },
+      process.env.JSON_SECRET_KEY,
+      { expiresIn: "7d" }
+    );
+    return res.send({
+      success: true,
+      user: {
+        name: user.userName,
+        email: user.email,
+        id: user._id,
+      },
+      token,
+    });
   }
-  return res.status(401).send({ success: false });
+  return res.send({ message: "Invalid password", success: false });
 };
 
 const findMail = async (req, res) => {
