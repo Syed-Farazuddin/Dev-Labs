@@ -28,7 +28,6 @@ app.post("/register", async (req, res) => {
 
 app.post("/CheckEmail", async (req, res) => {
   const { email } = req.body;
-  // console.log(email);
   const emailCheck = await userModel.find({ email });
   if (emailCheck.length > 0) {
     return res.send({ success: true, emailCheck });

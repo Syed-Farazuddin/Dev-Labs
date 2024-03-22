@@ -38,9 +38,6 @@ function Register() {
       </div>
       <h1 className="text-xl mb-4 font-bold flex justify-center items-end gap-2 text-black">
         Welcome to
-        {/* <div className="flex justify-center items-end ml-2">
-          <p className="text-white">Dev Labs</p>
-        </div> */}
         <div className="flex items-center justify-end">
           <img className="h-10 w-10" src={logo} alt="" />
           <p className="text-black">ev Labs</p>
@@ -49,9 +46,6 @@ function Register() {
       <div className="p-10 flex flex-col  gap-5 bg-[#ffffff25] rounded-lg">
         <h1 className="text-2xl text-slate-600 font-bold">Sign up</h1>
         <div className="flex flex-col gap-2">
-          {/* <label htmlFor="Email" className="text-slate-600 font-bold">
-            Email address
-          </label> */}
           <input
             type="email"
             value={email}
@@ -63,9 +57,6 @@ function Register() {
           />
         </div>
         <div className="flex flex-col gap-2">
-          {/* <label htmlFor="password" className="text-slate-600 font-bold">
-            Password
-          </label> */}
           <input
             value={password}
             onChange={(e) => {
@@ -77,9 +68,6 @@ function Register() {
           />
         </div>
         <div className="flex flex-col gap-2">
-          {/* <label htmlFor="password" className="text-slate-600 font-bold">
-            Password
-          </label> */}
           <input
             value={userName}
             onChange={(e) => {

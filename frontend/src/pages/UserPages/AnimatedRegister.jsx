@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import logo from "../../assets/D.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
@@ -15,16 +14,10 @@ function AnimatedRegister() {
   const [regexMatched, setRegexMatched] = useState(false);
   const [IsValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
-  // const onSubmit = async () => {
-  //   const response = await axios.post("http://localhost:4000/register", {
-  //     email,
-  //     password,
-  //   });
-  //   const { data } = await response;
-  //   console.log(data.emailCheck.success);
-  // };
+
+  // Regular expression for validating strong passwords
+
   const validatePassword = () => {
-    // Regular expression for validating strong passwords
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     if (passwordRegex.test(password)) {
       console.log(password);
@@ -66,7 +59,10 @@ function AnimatedRegister() {
   return (
     <div className="flex items-center justify-center h-[110vh] flex-col registerContainer">
       <div className="flex fixed top-0 right-0 left-0  py-4 px-6 justify-between items-center">
-        <Link to={'/'} className="flex items-center justify-end text-white cursor-pointer">
+        <Link
+          to={"/"}
+          className="flex items-center justify-end text-white cursor-pointer"
+        >
           <span className="text-4xl">D</span>
           <p className="text-xl">ev Labs</p>
         </Link>
