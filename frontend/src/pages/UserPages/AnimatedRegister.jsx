@@ -14,6 +14,7 @@ function AnimatedRegister() {
   const [regexMatched, setRegexMatched] = useState(false);
   const [IsValidEmail, setIsValidEmail] = useState(false);
   const [isValidPassword, setIsValidPassword] = useState(false);
+  const [isValidUser, setIsValidUser] = useState(false);
 
   // Regular expression for validating strong passwords
 
@@ -47,13 +48,32 @@ function AnimatedRegister() {
     }
   }
 
+  async function validateUserName() {
+    try {
+      const response = await axios.post("http://localhost:4000/checkUserName", {
+        userName,
+      });
+      console.log(response.data);
+      if (response.data.success) {
+        setIsValidUser(false);
+      } else {
+        setIsValidUser(true);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    validateUserName();
+  }, [userName, isValidUser]);
+
   useEffect(() => {
     ValidateEmail();
   }, [email, IsValidEmail]);
 
   useEffect(() => {
     validatePassword();
-    console.log(isValidPassword);
   }, [password, isValidPassword]);
 
   return (
@@ -203,7 +223,11 @@ function AnimatedRegister() {
                             ? " border-[1px] border-green-200 opacity-50 cursor-auto"
                             : " border-[1px] border-slate-200 ")
                         }
-                        onClick={() => setUserNameChoosen(userName)}
+                        onClick={() => {
+                          if (isValidUser) {
+                            setUserNameChoosen(userName);
+                          }
+                        }}
                       >
                         Continue
                       </button>
@@ -239,7 +263,7 @@ function AnimatedRegister() {
       {/* Validation messages */}
       <div className="mt-5 text-slate-400 h-30 flex justify-center items-center flex-col gap-2">
         {IsValidEmail ? (
-          ""
+          <p className="text-center"> </p>
         ) : (
           <>
             <p className="text-center">
@@ -247,15 +271,22 @@ function AnimatedRegister() {
             </p>
           </>
         )}
-        {password.length <= 0 ? (
-          "Enter your password"
-        ) : isValidPassword ? (
+        {isValidPassword ? (
           ""
         ) : (
           <>
-            <p className="text-center">
-              password much contains least 8 characters, containing at least one
+            <p className="text-center w-[50%] capitalize">
+              Password much contains least 8 characters, containing at least one
               uppercase letter, one lowercase letter, and one digit
+            </p>
+          </>
+        )}
+        {isValidUser ? (
+          <p className="text-center"> </p>
+        ) : (
+          <>
+            <p className="text-center capitalize w-[50%]">
+              This user name is already taken! Please user different username
             </p>
           </>
         )}

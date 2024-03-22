@@ -35,6 +35,15 @@ app.post("/CheckEmail", async (req, res) => {
   res.send({ success: false });
 });
 
+app.post("/checkUserName", async (req, res) => {
+  const { userName } = req.body;
+  const userCheck = await userModel.find({ userName });
+  if (userCheck.length > 0) {
+    return res.send({ success: true, userCheck });
+  }
+  res.send({ success: false });
+});
+
 app.get("/", (req, res) => {
   res.send("Welcome to homepage");
 });
