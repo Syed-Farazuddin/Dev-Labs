@@ -10,8 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/register2" element={<AnimatedRegister />} />
+        <Route path="/register" element={<AnimatedRegister />} />
+        <Route path="/register2" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );

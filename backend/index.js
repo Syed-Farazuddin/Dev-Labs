@@ -2,6 +2,7 @@ const express = require("express");
 const connectDB = require("./db/index");
 const cors = require("cors");
 const userModel = require("./Models/UserAuth.js");
+const bcrypt = require("bcrypt");
 const app = express();
 
 app.use(cors());
@@ -12,8 +13,12 @@ connectDB();
 app.post("/register", async (req, res) => {
   const { email, password, userName } = req.body;
   console.log(email, password, userName);
-
-  const user = await userModel.create(req.body);
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = await userModel.create({
+    email,
+    password: hashedPassword,
+    userName,
+  });
   if (user) {
     return res.send({
       success: true,
