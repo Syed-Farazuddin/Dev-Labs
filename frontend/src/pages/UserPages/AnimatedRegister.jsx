@@ -53,7 +53,10 @@ function AnimatedRegister() {
         </Link>
       </div>
 
-      <form className="p-10 flex flex-col border-2 border-[rgba(0, 212, 255, 1)]  gap-5  rounded-lg w-[500px]">
+      <form
+        className="p-10 flex flex-col border-2 border-[#ffffff07]  gap-5 rounded-lg w-[500px] bg-[#ffffff07]
+"
+      >
         <h1 className="text-2xl font-bold text-slate-300">Sign up</h1>
 
         {/* Enter your email */}
