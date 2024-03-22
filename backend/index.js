@@ -10,8 +10,8 @@ app.use(express.json());
 connectDB();
 
 app.post("/register", async (req, res) => {
-  const { email, password } = req.body;
-  console.log(email, password);
+  const { email, password, userName } = req.body;
+  console.log(email, password, userName);
 
   const user = await userModel.create(req.body);
   if (user) {

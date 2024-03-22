@@ -5,10 +5,13 @@ import axios from "axios";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+
   const navigate = useNavigate();
   const handleSubmit = async () => {
     const response = await axios.post("http://localhost:4000/register", {
       email,
+      userName,
       password,
     });
     console.log(response);
@@ -78,9 +81,9 @@ function Register() {
             Password
           </label> */}
           <input
-            value={password}
+            value={userName}
             onChange={(e) => {
-              setPassword(e.target.value);
+              setUserName(e.target.value);
             }}
             placeholder="Create your user name"
             type="text"
