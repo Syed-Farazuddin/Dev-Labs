@@ -3,9 +3,13 @@ import React, { useState } from "react";
 import logo from "../../assets/D.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { RiEyeCloseLine } from "react-icons/ri";
+import { RxEyeOpen } from "react-icons/rx";
+
 export default function Login() {
   const [name, setName] = useState("");
   const [error, setError] = useState();
+  const [showPass, setShowPass] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const handleSignIn = async () => {
@@ -59,14 +63,32 @@ export default function Login() {
           <label className="text-slate-300 text-[18px]" htmlFor="password">
             Password
           </label>
-          <input
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-            type="password"
-            className="px-4 py-2 rounded-lg border-none outline-blue-800 "
-          />
+          <div className="flex items-center justify-center bg-white rounded-lg  outline-blue-800  py-2 px-4">
+            <input
+              type={`${showPass ? "text" : "password"}`}
+              className="rounded-lg border-none outline-none w-full"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <p
+              className="text-slate-900 cursor-pointer"
+              onClick={() => {
+                setShowPass((prev) => !prev);
+              }}
+            >
+              {showPass ? (
+                <>
+                  <RxEyeOpen />
+                </>
+              ) : (
+                <>
+                  <RiEyeCloseLine />
+                </>
+              )}
+            </p>
+          </div>
         </div>
 
         <button
