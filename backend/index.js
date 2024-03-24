@@ -5,6 +5,7 @@ const userModel = require("./Models/UserAuth.js");
 const bcrypt = require("bcrypt");
 const app = express();
 const {
+  getCodingProfiles,
   registerController,
   findMail,
   findUserName,
@@ -20,6 +21,8 @@ app.post("/login", loginController);
 app.post("/register", registerController);
 
 app.post("/CheckEmail", findMail);
+
+app.post("/codingProfiles", getCodingProfiles);
 
 app.post("/checkUserName", findUserName);
 

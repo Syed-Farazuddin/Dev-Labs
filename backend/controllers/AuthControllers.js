@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const userModel = require("../Models/UserAuth");
+const UserDetailsModel = require("../Models/UserDetails");
 const json = require("jsonwebtoken");
 require("dotenv").config();
 
@@ -22,6 +23,16 @@ const registerController = async (req, res) => {
     success: false,
     message: "Successfully got data from client",
   });
+};
+
+const getCodingProfiles = async (req, res) => {
+  const codingProfiles = await UserDetailsModel.create(req.body);
+  if (!codingProfiles) {
+    return res
+      .status(201)
+      .send({ message: "Something went wrong", success: false });
+  }
+  res.status(200).send({ success: true, codingProfiles });
 };
 
 const loginController = async (req, res) => {
@@ -76,6 +87,7 @@ const findUserName = async (req, res) => {
 };
 
 module.exports = {
+  getCodingProfiles,
   registerController,
   findMail,
   findUserName,
