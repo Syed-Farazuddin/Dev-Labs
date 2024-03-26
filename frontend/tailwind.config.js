@@ -9,6 +9,12 @@ export default {
         headings: "#EF5221",
         subtitles: "DDDDDD",
       },
+      screens: {
+        xlg: "1300px",
+        lg: "1000px",
+        md: "600px",
+        sm: "300px",
+      },
     },
   },
   plugins: [],
