@@ -30,7 +30,7 @@ function UserProfile() {
     handleSubmit();
   }, []);
   return (
-    <div className="flex justify-start items-center p-10  bg-[#000000]  gap-10">
+    <div className="flex justify-start items-start p-10 bg-[#000000]  gap-10">
       <div className="flex items-center justify-center flex-col gap-8">
         <div className="px-6 py-8 bg-[#252525] rounded-lg">
           <div className="flex justify-start items-start p-4 rounded-lg gap-2 flex-[40%]">
