@@ -21,7 +21,7 @@ export default function Login() {
     console.log(data);
     if (data.success) {
       localStorage.setItem("auth", JSON.stringify(data?.user));
-      navigate("/");
+      navigate("/homepage");
     } else {
       setError(data.message);
     }
