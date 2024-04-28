@@ -107,7 +107,7 @@ export default function Homepage() {
             </div>
           ))}
         </div>
-        <div className="w-[25%] border border-slate-400 m-4 rounded-lg p-4">
+        <div className="w-[65%] border border-slate-400 m-4 rounded-lg p-4">
           Right Container
         </div>
       </div>

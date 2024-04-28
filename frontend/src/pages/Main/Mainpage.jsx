@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Nav from "../../components/Nav";
 import Main from "../../components/BannerMain";
 import { GlobalContext } from "../../context";
@@ -8,9 +8,11 @@ function MainPage() {
   const navigate = useNavigate();
   console.log(userInfo);
 
-  if (userInfo !== null) {
-    navigate("/homepage");
-  }
+  useEffect(() => {
+    if (userInfo !== null || userInfo) {
+      navigate("/homepage");
+    }
+  }, []);
   return (
     <>
       <Nav />
