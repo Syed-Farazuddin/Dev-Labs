@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/UserPages/Login.jsx";
-import Register from "./pages/UserPages/Register.jsx";
-import Homepage from "./pages/Homepage.jsx";
-import UserProfile from "./pages/UserProfile.jsx";
+import Login from "./pages/Auth/Login.jsx";
+import Register from "./pages/Auth/Register.jsx";
+import Homepage from "./pages/Main/Homepage.jsx";
+import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 function App() {
   return (
     <BrowserRouter>

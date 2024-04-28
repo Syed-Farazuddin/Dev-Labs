@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/person.png";
+import logo from "../../assets/person.png";
 import axios from "axios";
 import { IoGlobeOutline } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa";
