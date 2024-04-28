@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Main() {
   const [email, setEmail] = useState("");
   return (
-    <div className="mt-10">
+    <div className="py-10 bg-white">
       {/* First section */}
       <div className="flex flex-col gap-2 h-[100vh] py-10">
         <div className="flex flex-col gap-4">
