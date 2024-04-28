@@ -54,7 +54,8 @@ export default function Homepage() {
 
   return (
     <Layout>
-      <div className="bg-[#272727] flex  text-slate-300">
+      <div className="bg-[#272727] flex  text-slate-300 max-w-7xl mx-auto">
+        {/* Left container */}
         <div className="bg-[#303030] w-[30%] rounded-lg m-4 p-4">
           <div>
             <p className="flex items-center gap-2 cursor-pointer hover:bg-slate-600 rounded-lg  text-xl mx-2 my-4 px-2 py-2">
@@ -85,6 +86,7 @@ export default function Homepage() {
             <p className="flex items-center gap-2 cursor-pointer">Post</p>
           </div>
         </div>
+        {/* Main container */}
         <div className="w-full flex flex-col justify-start items-start gap-4 m-4 ">
           {posts.map((item, ind) => (
             <div
@@ -107,6 +109,7 @@ export default function Homepage() {
             </div>
           ))}
         </div>
+        {/* Right container */}
         <div className="w-[65%] border border-slate-400 m-4 rounded-lg p-4">
           Right Container
         </div>

@@ -12,7 +12,8 @@ function MainPage() {
     if (userInfo !== null || userInfo) {
       navigate("/homepage");
     }
-  }, []);
+  });
+
   return (
     <>
       <Nav />

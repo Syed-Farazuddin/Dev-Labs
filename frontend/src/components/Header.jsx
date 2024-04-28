@@ -2,11 +2,21 @@ import React, { useContext } from "react";
 import { GlobalContext } from "../context";
 import D from "../assets/D.png";
 import { AiOutlineUser, AiOutlineSearch } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { CiTrophy } from "react-icons/ci";
+import { GrResources } from "react-icons/gr";
 
 export default function Header() {
+  const navigate = useNavigate();
+
   const { userInfo } = useContext(GlobalContext);
-  console.log(userInfo.name);
+
+  const HandleSignOut = () => {
+    localStorage.removeItem("auth");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <div className="flex justify-between items-center px-6 py-4  bg-[#353535]">
       <Link
@@ -25,21 +35,31 @@ export default function Header() {
       </div>
       <div>
         <ul className="flex items-center gap-10 text-slate-200">
-          <Link className=" text-lg flex items-center justify-center gap-1">
+          <Link className=" text-lg flex items-center justify-center gap-1  hover:text-orange-500">
+            <GrResources />
             Learning
           </Link>
-          <Link className=" text-lg flex items-center justify-center gap-1">
+          <Link className=" text-lg flex items-center justify-center gap-1 hover:text-orange-500">
+            <CiTrophy />
             Compete
           </Link>
           <Link
             to={"/user"}
-            className="text-lg flex items-center justify-center gap-1"
+            className="text-lg flex items-center justify-center gap-1 hover:text-orange-500"
           >
             <p>
               <AiOutlineUser />
             </p>
             <span>{userInfo?.name}</span>
           </Link>
+          <button
+            className="border-2 border-orange-500 px-4 py-2 rounded-lg hover:text-orange-500"
+            onClick={() => {
+              HandleSignOut();
+            }}
+          >
+            Sign out
+          </button>
         </ul>
       </div>
     </div>

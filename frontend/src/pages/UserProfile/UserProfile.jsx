@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/person.png";
 import axios from "axios";
 import { IoGlobeOutline } from "react-icons/io5";
@@ -7,12 +7,18 @@ import { SiLeetcode } from "react-icons/si";
 import { SiCodeforces } from "react-icons/si";
 import { FaEdit, FaMapPin } from "react-icons/fa";
 import Layout from "../../components/Layout/Layout";
+import { GlobalContext } from "../../context";
+import { useNavigate } from "react-router-dom";
 function UserProfile() {
+  const { userInfo } = useContext(GlobalContext);
+
   const [github, setGithub] = useState("");
   const [githubError, setGithubError] = useState();
   const [gitInfo, setGitInfo] = useState([]);
   const [leetcode, setLeetCode] = useState([]);
   const [CF, setCF] = useState([]);
+
+  const navigate = useNavigate();
 
   const getGitInfo = async () => {
     const response = await axios.get(
@@ -25,6 +31,7 @@ function UserProfile() {
       setGithubError(true);
     }
   };
+
   const getLeetCodeInfo = async () => {
     const response = await axios.get(
       "https://leetcode-stats-api.herokuapp.com/syedfaraz2405"
@@ -32,6 +39,7 @@ function UserProfile() {
     const { data } = response;
     setLeetCode(data);
   };
+
   const getCodeforcesInfo = async () => {
     const response = await axios.get(
       "https://codeforces.com/api/user.info?handles=Syed_Farazuddin"
@@ -39,15 +47,25 @@ function UserProfile() {
     const { data } = response;
     setCF(data);
   };
+
+  useEffect(() => {
+    if (userInfo == null) {
+      navigate("/");
+    }
+  });
+
   useEffect(() => {
     getGitInfo();
   }, []);
+
   useEffect(() => {
     getLeetCodeInfo();
   }, []);
+
   useEffect(() => {
     getCodeforcesInfo();
   }, []);
+
   return (
     <Layout>
       <div className="flex justify-start items-start p-10 bg-[#000000]  gap-10">
