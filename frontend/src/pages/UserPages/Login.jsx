@@ -20,7 +20,7 @@ export default function Login() {
     const { data } = response;
     console.log(data);
     if (data.success) {
-      localStorage.setItem("auth", JSON.stringify(data));
+      localStorage.setItem("auth", JSON.stringify(data?.user));
       navigate("/");
     } else {
       setError(data.message);
