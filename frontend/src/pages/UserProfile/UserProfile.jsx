@@ -68,9 +68,9 @@ function UserProfile() {
 
   return (
     <Layout>
-      <div className="flex justify-start items-start p-10 bg-[#000000]  gap-10">
+      <div className="flex justify-start items-start p-10 loginContainer  gap-10">
         <div className="flex items-center justify-center flex-col gap-8">
-          <div className="px-6 py-8 bg-[#252525] rounded-lg">
+          <div className="px-6 py-8 bg-[#ffffff14] rounded-lg">
             {/* About me */}
             <div className="flex justify-start items-start p-4 rounded-lg gap-2 flex-[40%]">
               <img className="rounded-full w-40 h-40 mr-2" src={logo} alt="" />
@@ -127,7 +127,7 @@ function UserProfile() {
               </div>
             </div>
           </div>
-          <div className="px-6 py-8 bg-[#252525] rounded-lg">
+          <div className="px-6 py-8 bg-[#ffffff14] rounded-lg">
             {/* Education Section */}
             <div className="flex justify-start items-start p-4 rounded-lg gap-2 flex-[40%]">
               <div className="flex items-start justify-center flex-col gap-2 mt-4">
@@ -152,18 +152,18 @@ function UserProfile() {
             <div></div>
           </div>
         </div>
-        <div className="px-6 py-8 bg-[#252525] rounded-lg w-full">
+        <div className="px-6 py-8 bg-[#ffffff14] rounded-lg w-full">
           <div className="github flex gap-4 items-center justify-center flex-col text-black">
             <div className="githubDetails">
               <>
-                <h1 className="text-4xl font-serif text-slate-300  my-4 font-bold flex items-center justify-start gap-4 mb-4">
+                <h1 className="text-3xl font-serif text-slate-300  my-4 font-bold flex items-center justify-start gap-4 mb-4">
                   <span>
                     <FaGithub />
                   </span>
                   <p>Github</p>
                 </h1>
-                <div className="repos flex gap-10 lg:flex-col xlg:flex-col xlg:items-center xlg:justify-center">
-                  <img className="h-80 w-80" src={gitInfo?.avatar_url} alt="" />
+                <div className="repos flex gap-10  xlg:flex-col xlg:items-center xlg:justify-center">
+                  <img className="h-40 w-40" src={gitInfo?.avatar_url} alt="" />
                   <div className="flex flex-col text-slate-200 gap-4">
                     <h1 className="text-2xl text-white">
                       <span className="">{gitInfo?.login}</span>
@@ -176,28 +176,29 @@ function UserProfile() {
                       {gitInfo?.location}
                     </p>
                     <p>Github Repos Created : {gitInfo?.public_repos}</p>
-                    <img
-                      src="https://streak-stats.demolab.com/?user=syed-farazuddin&theme=dark"
-                      alt="git stats"
-                    />
                   </div>
                 </div>
+                <img
+                  // className="w-0 h-100"
+                  src="https://streak-stats.demolab.com/?user=syed-farazuddin"
+                  alt="git stats"
+                />
                 <a
                   href="https://github.com/syed-farazuddin"
                   className="flex gap-4 mt-5 items-start justify-center lg:flex-col xlg:flex-row"
                 >
                   <img
                     height="180em"
-                    src="https://github-readme-stats-eight-theta.vercel.app/api?username=syed-farazuddin&show_icons=true&theme=algolia&include_all_commits=true&count_private=true"
+                    src="https://github-readme-stats-eight-theta.vercel.app/api?username=syed-farazuddin&show_icons=true&include_all_commits=true&count_private=true"
                   />
                   <img
                     height="180em"
-                    src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=syed-farazuddin&layout=compact&langs_count=8&theme=algolia&include_all_commits=true&count_private=true"
+                    src="https://github-readme-stats-eight-theta.vercel.app/api/top-langs/?username=syed-farazuddin&layout=compact&langs_count=8&include_all_commits=true&count_private=true"
                   />
                 </a>
                 <img
                   className="mt-5"
-                  src="https://github-readme-activity-graph.vercel.app/graph?username=syed-farazuddin&theme=react-dark"
+                  src="https://github-readme-activity-graph.vercel.app/graph?username=syed-farazuddin"
                   alt=""
                 />
               </>
@@ -205,7 +206,7 @@ function UserProfile() {
           </div>
           <div className="mt-10 flex items-center justify-start flex-col">
             {/* Leetcode stats */}
-            <div className="border-[1px] border-slate-400 bg-[#111111] mt-10 p-8 flex justify-center items-center">
+            <div className="border-[1px] border-slate-400 bg-[#ffffff20] mt-10 p-8 flex justify-center items-center">
               <div className="flex justify-start items-center flex-col gap-4">
                 <h1 className="text-slate-200 text-4xl font-extrabold justify-center items-center flex">
                   <p className="flex items-center justify-start gap-2">
@@ -245,7 +246,7 @@ function UserProfile() {
             </div>
             {/* Codeforces */}
             {CF && CF.result && CF.result.length > 0 ? (
-              <div className="border-[1px] border-slate-400 bg-[#111111] mt-10 p-8 flex lg:w-full xlg:w-[80%] justify-center items-center ">
+              <div className="border-[1px] border-slate-400 bg-[#ffffff20] mt-10 p-8 flex lg:w-full xlg:w-[80%] justify-center items-center ">
                 <div className="flex justify-start items-center flex-col gap-4">
                   <h1 className="text-slate-200 text-4xl font-extrabold">
                     <p className="flex items-center justify-start gap-2">
