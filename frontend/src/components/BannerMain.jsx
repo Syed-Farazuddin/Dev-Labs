@@ -8,19 +8,19 @@ import { Link } from "react-router-dom";
 function Main() {
   const [email, setEmail] = useState("");
   return (
-    <div className="py-10 bg-white">
+    <div className="py-10 loginContainer">
       {/* First section */}
       <div className="flex flex-col gap-2 h-[100vh] py-10">
         <div className="flex flex-col gap-4">
           <h1 className="text-headings text-6xl font-extrabold text-center ">
             Start your developer journey
           </h1>
-          <p className="text-subtitles text-xl text-center">
+          <p className="text-subtitles text-xl text-center text-slate-300">
             Riding the Wave of Innovation, Networking Globally, and Elevating
             Developer Profiles
           </p>
           <div className="flex items-center justify-center gap-2 ">
-            <div className="flex border-2 border-slate-300 justify-between items-center w-[50%]">
+            <div className="flex border-2 border-slate-300 justify-between items-center w-[50%] bg-white py-0">
               <input
                 type="text"
                 value={email}
@@ -30,7 +30,7 @@ function Main() {
                   setEmail(e.target.value);
                 }}
               />
-              <p className="text-[20px] mr-2 text-slate-500">
+              <p className="text-[20px] mr-2">
                 <MdOutlineMail />
               </p>
             </div>
@@ -53,7 +53,7 @@ function Main() {
           Discover, Share and Connect
         </h1>
         <div className="flex justify-center items-center max-w-6xl mx-auto gap-10">
-          <p className="text-subtitles text-xl text-center w-[30%]">
+          <p className="text-subtitles text-xl text-center w-[30%] text-slate-300">
             Make your connections globally, Learn from different professionals,
             Share your Experiences, Explore new technologies, Get best learning
             paths!
@@ -67,7 +67,7 @@ function Main() {
           Discover an Entire different Development space
         </h1>
         <div className="flex justify-center items-center gap-10">
-          <p className="text-subtitles text-xl text-center w-[30%]">
+          <p className="text-subtitles text-xl text-center w-[30%] text-slate-300">
             Unleashing Your Potential, Building Your Profile and Thriving in the
             Tech Community
           </p>

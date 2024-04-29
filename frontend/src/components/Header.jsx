@@ -18,7 +18,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex justify-between items-center px-6 py-4  bg-[#353535]">
+    <div className="flex justify-between items-center px-6 py-4  bg-[#353535] loginContainer">
       <Link
         to={"/homepage"}
         className="text-2xl text-slate-300 font-serif font-bold "
@@ -53,7 +53,7 @@ export default function Header() {
             <span>{userInfo?.name}</span>
           </Link>
           <button
-            className="border-2 border-orange-500 px-4 py-2 rounded-lg hover:text-orange-500"
+            className="border-2 border-slate-500 px-4 py-2 rounded-lg hover:text-orange-500"
             onClick={() => {
               HandleSignOut();
             }}
