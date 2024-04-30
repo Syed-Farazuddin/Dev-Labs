@@ -2,22 +2,26 @@ import React, { useContext, useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import { GlobalContext } from "../../context";
 import postIcon from "../../assets/person.png";
-import postImg from "../../assets/postImg.png";
+import postImg from "../../assets/post3.jpg";
 import {
   AiFillBell,
   AiFillHome,
   AiFillMessage,
-  AiFillNotification,
   AiFillSetting,
   AiOutlineShareAlt,
 } from "react-icons/ai";
-import { FaRegComment, FaRegHeart, FaShare } from "react-icons/fa";
+import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
+  const navigate = useNavigate();
   const { userInfo } = useContext(GlobalContext);
+
   useEffect(() => {
-    console.log(userInfo);
+    if (!userInfo) {
+      navigate("/");
+    }
   }, []);
 
   const posts = [
@@ -30,28 +34,28 @@ export default function Homepage() {
       postIcon: postIcon,
     },
     {
-      name: "John",
-      subtitle: "kon bane ga don",
+      name: "Syed Faiz",
+      subtitle: "kaha se aate hai ye log",
       description:
         "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
       postUrl: "../../assets/postImg.png",
-      postIcon: "../../assets/postIcon.png",
+      postIcon: "../../assets/post2.jpeg",
     },
     {
       name: "John",
       subtitle: "kon bane ga don",
       description:
         "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
-      postUrl: "../../assets/postImg.png",
-      postIcon: "../../assets/postIcon.png",
+      postUrl: "../../assets/post2.jpeg",
+      postIcon: "../../assets/post3.jpg",
     },
     {
       name: "John",
       subtitle: "kon bane ga don",
       description:
         "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
-      postUrl: "../../assets/postImg.png",
-      postIcon: "../../assets/postIcon.png",
+      postUrl: "../../assets/post3.jpg",
+      postIcon: "../../assets/post3.jpg",
     },
   ];
 

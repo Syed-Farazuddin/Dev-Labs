@@ -68,12 +68,12 @@ function UserProfile() {
 
   return (
     <Layout>
-      <div className="flex justify-start items-start p-10 loginContainer  gap-10">
+      <div className="flex justify-start items-start p-10 loginContainer  gap-10 max-w-7xl mx-auto">
         <div className="flex items-center justify-center flex-col gap-8">
           <div className="px-6 py-8 bg-[#ffffff14] rounded-lg">
             {/* About me */}
-            <div className="flex justify-start items-start p-4 rounded-lg gap-2 flex-[40%]">
-              <img className="rounded-full w-40 h-40 mr-2" src={logo} alt="" />
+            <div className="flex justify-start items-center p-4 rounded-lg gap-2 flex-[20%]">
+              <img className="rounded-full w-20 h-20 mr-2" src={logo} alt="" />
               <div className="flex items-start justify-center flex-col gap-2 mt-4">
                 <div className="flex items-center justify-between gap-4 w-full">
                   <h1 className="text-2xl font-bold text-[#eeeeee] w-full">
@@ -162,7 +162,7 @@ function UserProfile() {
                   </span>
                   <p>Github</p>
                 </h1>
-                <div className="repos flex gap-10  xlg:flex-col xlg:items-center xlg:justify-center">
+                <div className="repos flex gap-10  xlg:flex-col xlg:items-center xlg:justify-center mb-4">
                   <img className="h-40 w-40" src={gitInfo?.avatar_url} alt="" />
                   <div className="flex flex-col text-slate-200 gap-4">
                     <h1 className="text-2xl text-white">
