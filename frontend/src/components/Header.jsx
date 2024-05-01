@@ -15,6 +15,7 @@ export default function Header() {
     localStorage.removeItem("auth");
     localStorage.removeItem("token");
     navigate("/");
+    window.location.reload();
   };
 
   return (

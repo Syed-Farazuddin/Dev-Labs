@@ -9,7 +9,7 @@ function MainPage() {
   console.log(userInfo);
 
   useEffect(() => {
-    if (userInfo !== null || userInfo) {
+    if (userInfo || userInfo !== null) {
       navigate("/homepage");
     }
   });

@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 function UserProfile() {
   const { userInfo } = useContext(GlobalContext);
 
-  const [github, setGithub] = useState("");
+  // const [github, setGithub] = useState("");
   const [githubError, setGithubError] = useState();
   const [gitInfo, setGitInfo] = useState([]);
   const [leetcode, setLeetCode] = useState([]);
@@ -20,9 +20,67 @@ function UserProfile() {
 
   const navigate = useNavigate();
 
+  const educationInfo = [
+    {
+      institute: "Lords institute of engineering and technology",
+      degree: "Bachelor of Engineering",
+      duration: {
+        start: "2020",
+        end: "2024",
+      },
+      scores: {
+        marks: false,
+        gpa: true,
+        score: "9.3",
+        totalScore: "10",
+      },
+      major: "Computer Science",
+    },
+    {
+      institute: "Narayana Junior College",
+      degree: "Bachelor of Engineering",
+      duration: {
+        start: "2020",
+        end: "2024",
+      },
+      scores: {
+        marks: true,
+        gpa: false,
+        score: "905",
+        totalScore: "1000",
+      },
+      major: "Maths, Physics & Chemistry",
+    },
+    {
+      institute: "Geetha High School",
+      degree: "Secondary Schooling",
+      duration: {
+        start: "2016",
+        end: "2018",
+      },
+      scores: {
+        marks: false,
+        gpa: true,
+        score: "9.3",
+        totalScore: "10",
+      },
+      major: "State Board",
+    },
+  ];
+
+  const profileInfo = {
+    name: "Syed Farazuddin",
+    title:
+      "Final Year BE Student | CSE | Web Developer | MERN | React | Java | Spring boot",
+    github: "Syed-Farazuddin",
+    leetcode: "syedfaraz2405",
+    codeforces: "",
+    websiteURL: "",
+  };
+
   const getGitInfo = async () => {
     const response = await axios.get(
-      `https://api.github.com/users/Syed-Farazuddin`
+      `https://api.github.com/users/${profileInfo?.github}`
     );
     const { data } = response;
     if (data) {
@@ -34,7 +92,7 @@ function UserProfile() {
 
   const getLeetCodeInfo = async () => {
     const response = await axios.get(
-      "https://leetcode-stats-api.herokuapp.com/syedfaraz2405"
+      `https://leetcode-stats-api.herokuapp.com/${profileInfo?.leetcode}`
     );
     const { data } = response;
     setLeetCode(data);
@@ -127,7 +185,7 @@ function UserProfile() {
               </div>
             </div>
           </div>
-          <div className="px-6 py-8 bg-[#ffffff14] rounded-lg">
+          <div className="px-6 py-8 bg-[#ffffff14] rounded-lg w-full">
             {/* Education Section */}
             <div className="flex justify-start items-start p-4 rounded-lg gap-2 flex-[40%]">
               <div className="flex items-start justify-center flex-col gap-2 mt-4">
@@ -140,16 +198,60 @@ function UserProfile() {
                   </div>
                 </div>
                 <div className="text-white">
-                  <div className="flex justify-between items-center gap-14">
-                    <h1>Lords institute of engineering and technology</h1>
-                    <time>2020 - 2024</time>
-                  </div>
-                  <p>Computer Science Engineering</p>
+                  {educationInfo.map((item, index) => (
+                    <section key={index} className="my-5">
+                      <div className="flex justify-between items-center gap-14">
+                        <h1>{item.institute}</h1>
+                        <time>
+                          {item?.duration?.start} - {item?.duration?.end}
+                        </time>
+                      </div>
+                      <p>{item.major}</p>
+                      <div className="flex gap-2 items-center">
+                        <h5>Scores:</h5>
+                        <p>{item.scores.score}</p>/{" "}
+                        <span>{item.scores.totalScore}</span>
+                        <p>{item.scores.gpa ? "GPA " : " Marks"}</p>
+                      </div>
+                    </section>
+                  ))}
                 </div>
               </div>
             </div>
-            {/* Experience section if Any */}
-            <div></div>
+          </div>
+          <div className="px-6 py-8 bg-[#ffffff14] rounded-lg w-full">
+            {/* Experience section  */}
+            <div className="flex justify-start items-start p-4 rounded-lg gap-2 flex-[40%]">
+              <div className="flex items-start justify-center flex-col gap-2 mt-4">
+                <div className="flex items-center justify-between gap-4 w-full">
+                  <h1 className="text-2xl font-bold text-[#eeeeee] w-full">
+                    Experience
+                  </h1>
+                  <div className="text-[#eeeeee] cursor-pointer">
+                    <FaEdit />
+                  </div>
+                </div>
+                <div className="text-white">
+                  {educationInfo.map((item, index) => (
+                    <section key={index} className="my-5">
+                      <div className="flex justify-between items-center gap-14">
+                        <h1>{item.institute}</h1>
+                        <time>
+                          {item?.duration?.start} - {item?.duration?.end}
+                        </time>
+                      </div>
+                      <p>{item.major}</p>
+                      <div className="flex gap-2 items-center">
+                        <h5>Scores:</h5>
+                        <p>{item.scores.score}</p>/{" "}
+                        <span>{item.scores.totalScore}</span>
+                        <p>{item.scores.gpa ? "GPA " : " Marks"}</p>
+                      </div>
+                    </section>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="px-6 py-8 bg-[#ffffff14] rounded-lg w-full">

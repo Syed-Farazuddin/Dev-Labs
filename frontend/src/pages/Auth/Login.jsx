@@ -23,6 +23,7 @@ export default function Login() {
       localStorage.setItem("auth", JSON.stringify(data?.user));
       localStorage.setItem("token", data.token);
       navigate("/homepage");
+      window.location.reload();
     } else {
       setError(data.message);
     }

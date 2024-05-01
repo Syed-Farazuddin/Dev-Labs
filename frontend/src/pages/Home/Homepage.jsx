@@ -32,6 +32,10 @@ export default function Homepage() {
         "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
       postUrl: "../../assets/postImg.png",
       postIcon: postIcon,
+      likes: 20,
+      comments: 5,
+      shares: 4,
+      bookmarks: 10,
     },
     {
       name: "Syed Faiz",
@@ -94,7 +98,7 @@ export default function Homepage() {
           </div>
         </div>
         {/* Main container */}
-        <div className="w-full flex flex-col justify-start items-start gap-4 m-4  ">
+        <div className=" flex flex-col justify-start items-start gap-4 m-4 ">
           {posts.map((item, ind) => (
             <div
               className="bg-[#ffffff14] rounded-lg px-8 py-4 flex flex-col gap-4"
@@ -113,17 +117,24 @@ export default function Homepage() {
               <div className="w-[350px]">
                 <img src={postImg} alt="" />
               </div>
-              <div className="actions flex items-center justify-between">
-                {/* import {FaRegHeart} from "react-icons/fa"; */}
-                <div className="w-[25%] flex gap-10 items-center justify-between">
-                  <div className="hover:bg-red-100 hover:rounded-full w-5 h-5 flex items-center justify-center">
-                    <FaRegHeart className="cursor-pointer hover:text-red-500 text-2xl  z-20" />
+              <div className="flex justify-between items-center">
+                <div className="flex items-center justify-start gap-4 w-full">
+                  <div className="flex justify-start items-center gap-1 hover:text-red-500 cursor-pointer ">
+                    <FaRegHeart />
+                    <p>{item.likes}</p>
                   </div>
-                  <FaRegComment className="cursor-pointer hover:text-blue-500 text-2xl hover:bg-text-red-500 hover:rounded-full" />
-                  <AiOutlineShareAlt className="cursor-pointer hover:text-red-500 text-2xl hover:bg-text-red-500 hover:rounded-full" />
+                  <div className="flex justify-start items-center gap-1 hover:text-blue-500 cursor-pointer">
+                    <FaRegComment />
+                    <p>{item.comments}</p>
+                  </div>
+                  <div className="flex justify-start items-center gap-1 hover:text-orange-500 cursor-pointer">
+                    <AiOutlineShareAlt />
+                    <p>{item.shares}</p>
+                  </div>
                 </div>
-                <div>
-                  <CiBookmark className="cursor-pointer hover:text-red-500" />
+                <div className="flex justify-start items-center gap-1 hover:text-green-500 cursor-pointer">
+                  <CiBookmark />
+                  <p>{item.bookmarks}</p>
                 </div>
               </div>
             </div>
