@@ -26,11 +26,13 @@ const userDetails = mongoose.Schema({
       },
     },
   },
-  github: {
-    userName: {
+  website: {
+    url: {
       type: String,
     },
-    website_link: {
+  },
+  github: {
+    userName: {
       type: String,
     },
   },
@@ -38,15 +40,9 @@ const userDetails = mongoose.Schema({
     userName: {
       type: String,
     },
-    website_link: {
-      type: String,
-    },
   },
   codeforces: {
     userName: {
-      type: String,
-    },
-    website_link: {
       type: String,
     },
   },
