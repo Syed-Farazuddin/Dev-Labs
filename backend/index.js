@@ -11,6 +11,8 @@ const {
   findUserName,
   loginController,
 } = require("./controllers/AuthControllers.js");
+const { requireSignIn } = require("./middlewares/Authorization.js");
+const { updateProfile } = require("./controllers/ProfileController.js");
 app.use(cors());
 app.use(express.json());
 
@@ -25,6 +27,8 @@ app.post("/CheckEmail", findMail);
 app.post("/codingProfiles", getCodingProfiles);
 
 app.post("/checkUserName", findUserName);
+
+app.put("/updateProfile", requireSignIn, updateProfile);
 
 app.get("/", (req, res) => {
   res.send("Welcome to homepage");
