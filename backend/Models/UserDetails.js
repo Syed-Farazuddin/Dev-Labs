@@ -6,33 +6,32 @@ const userDetails = mongoose.Schema({
     type: String,
     unique: true,
   },
-  userDetails: {
+  details: {
     name: {
       type: String,
+      default: "",
     },
     bio: {
       type: String,
+      default: "",
     },
     image_URL: {
       type: String,
+      default: "",
     },
     working_at: {
       type: String,
-    },
-    contact: {
-      email: {
-        type: String,
-      },
-      mobile: {
-        type: Number,
-      },
-      website: {
-        type: String,
-      },
+      default: "",
     },
   },
-  website: {
-    url: {
+  contact: {
+    email: {
+      type: String,
+    },
+    mobile: {
+      type: Number,
+    },
+    website: {
       type: String,
     },
   },

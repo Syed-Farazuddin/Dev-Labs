@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
+const UserDetailsModel = require("../Models/UserDetails");
+const userModel = require("../Models/UserAuth");
 
-const requireSignIn = (req, res, next) => {
+const requireSignIn = async (req, res, next) => {
   const token = req.header("Authorization");
   if (!token) {
     res.status(202).json({
@@ -9,7 +11,6 @@ const requireSignIn = (req, res, next) => {
     });
   }
   const user = jwt.verify(token, process.env.JSON_SECRET_KEY);
-  console.log(user);
   if (!user) {
     res.status(202).json({
       success: false,
@@ -17,6 +18,12 @@ const requireSignIn = (req, res, next) => {
     });
   }
   req.user = user;
+  const registeredUser = await userModel.findOne({ _id: user._id });
+  console.log(registeredUser);
+  const userDetails = await UserDetailsModel.findOne({
+    email: registeredUser.email,
+  });
+  req.userDetails = userDetails;
   next();
 };
 

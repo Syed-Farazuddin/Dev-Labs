@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const userModel = require("../Models/UserAuth");
+// const userDetails = require("../Models/UserDetails");
 const UserDetailsModel = require("../Models/UserDetails");
 const json = require("jsonwebtoken");
 require("dotenv").config();
@@ -13,6 +14,7 @@ const registerController = async (req, res) => {
     password: hashedPassword,
     userName,
   });
+  const userDetails = await UserDetailsModel.create({ email: email });
   if (user) {
     return res.send({
       success: true,
