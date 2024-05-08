@@ -8,10 +8,11 @@ import { SiCodeforces } from "react-icons/si";
 import { FaEdit, FaMapPin } from "react-icons/fa";
 import Layout from "../../components/Layout/Layout";
 import { GlobalContext } from "../../context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import UserDetails from "../../components/UserDetails";
 function UserProfile() {
   const { userInfo } = useContext(GlobalContext);
-
+  const [editDetails, setEditDetails] = useState(false);
   // const [github, setGithub] = useState("");
   const [githubError, setGithubError] = useState();
   const [gitInfo, setGitInfo] = useState([]);
@@ -126,26 +127,34 @@ function UserProfile() {
 
   return (
     <Layout>
-      <div className="flex justify-start items-start p-10 loginContainer  gap-10 max-w-7xl mx-auto">
-        <div className="flex items-center justify-center flex-col gap-8">
-          <div className="px-6 py-8 bg-[#ffffff14] rounded-lg">
+      <div className="flex justify-start items-start p-10 loginContainer  gap-10 max-w-7xl mx-auto ">
+        <div className="flex items-center justify-center flex-col gap-8 ">
+          <div className="px-6 py-8 bg-[#ffffff14] rounded-lg ">
             {/* About me */}
-            <div className="flex justify-start items-center p-4 rounded-lg gap-2 flex-[20%]">
+            <div className="flex justify-start items-center p-4 rounded-lg gap-2 flex-[20%] ">
               <img className="rounded-full w-20 h-20 mr-2" src={logo} alt="" />
               <div className="flex items-start justify-center flex-col gap-2 mt-4">
                 <div className="flex items-center justify-between gap-4 w-full">
                   <h1 className="text-2xl font-bold text-[#eeeeee] w-full">
                     Syed Farazuddin
                   </h1>
-                  <div className="text-[#eeeeee] cursor-pointer">
+                  <Link
+                    to={"/editDetails"}
+                    className="text-[#eeeeee] cursor-pointer"
+                  >
                     <FaEdit />
-                  </div>
+                  </Link>
                 </div>
                 <p className="text-slate-200 text-pretty">
                   Final Year BE Student | CSE | Web Developer | MERN | React |
                   Java | Spring boot
                 </p>
               </div>
+              {editDetails && (
+                <>
+                  <UserDetails />
+                </>
+              )}
             </div>
             <div>
               {/* Profile items */}
