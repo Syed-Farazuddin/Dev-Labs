@@ -8,7 +8,7 @@ const postSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required  : true,
+      required: true,
     },
     image: {
       type: String,
@@ -16,10 +16,12 @@ const postSchema = new mongoose.Schema(
     likes: {
       type: Number,
       default: 0,
+      likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     },
     comments: {
       type: Number,
       default: 0,
+      CommentedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     },
     shares: {
       type: Number,
@@ -33,4 +35,6 @@ const postSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("post", postSchema);
+const PostModel = mongoose.model("post", postSchema);
+
+module.exports = PostModel;

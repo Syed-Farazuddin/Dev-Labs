@@ -13,6 +13,7 @@ const {
 } = require("./controllers/AuthControllers.js");
 const { requireSignIn } = require("./middlewares/Authorization.js");
 const { updateProfile } = require("./controllers/ProfileController.js");
+const { createPost } = require("./controllers/PostControllers.js");
 app.use(cors());
 app.use(express.json());
 
@@ -29,6 +30,8 @@ app.post("/codingProfiles", getCodingProfiles);
 app.post("/checkUserName", findUserName);
 
 app.put("/updateProfile", requireSignIn, updateProfile);
+
+app.post("/createPost", requireSignIn, createPost);
 
 app.get("/", (req, res) => {
   res.send("Welcome to homepage");

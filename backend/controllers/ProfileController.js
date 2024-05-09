@@ -18,7 +18,6 @@ const updateProfile = async (req, res) => {
     leetcode,
     codeforces,
   } = req.body;
-  // console.log(name);
   const userDetails = req.userDetails;
   userDetails.details.name = name || userDetails.details.name;
   userDetails.details.bio = bio || userDetails.details.bio;
