@@ -1,14 +1,13 @@
 const PostModel = require("../Models/Post");
 
-const createPost = async () => {
+const createPost = async (req, res) => {
   const postDetails = req.body;
-  console.log(postDetails);
-  //   PostModel.create(req.body);
   if (postDetails) {
+    const createPost = await PostModel.create(postDetails);
     res.json({
       message: "Got details",
       success: true,
-      postDetails,
+      createPost,
     });
   }
 };
