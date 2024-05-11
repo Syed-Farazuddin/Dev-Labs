@@ -1,11 +1,9 @@
 const UserDetailsModel = require("../Models/UserDetails");
-const userModel = require("../Models/UserAuth");
+const userModel = require("../Models/userModel");
 const getProfile = (req, res) => {};
 
 const updateProfile = async (req, res) => {
   let user = await userModel.findOne({ _id: req.user._id });
-  const header = req.user;
-  const body = req.body;
   const {
     name,
     bio,

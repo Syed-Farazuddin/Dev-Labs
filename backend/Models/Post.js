@@ -5,9 +5,9 @@ const postSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    user: {
+    userID: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "userModel",
       required: true,
     },
     image: {
@@ -16,12 +16,12 @@ const postSchema = new mongoose.Schema(
     likes: {
       type: Number,
       default: 0,
-      likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "userModel" }],
     },
     comments: {
       type: Number,
       default: 0,
-      CommentedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+      CommentedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "userModel" }],
     },
     shares: {
       type: Number,

@@ -1,9 +1,9 @@
 const express = require("express");
 const connectDB = require("./db/index");
 const cors = require("cors");
-const userModel = require("./Models/UserAuth.js");
 const bcrypt = require("bcrypt");
 const app = express();
+
 const {
   getCodingProfiles,
   registerController,
@@ -11,9 +11,12 @@ const {
   findUserName,
   loginController,
 } = require("./controllers/AuthControllers.js");
+
 const { requireSignIn } = require("./middlewares/Authorization.js");
 const { updateProfile } = require("./controllers/ProfileController.js");
-const { createPost } = require("./controllers/PostControllers.js");
+
+const { createPost, getPosts } = require("./controllers/PostControllers.js");
+
 app.use(cors());
 app.use(express.json());
 
@@ -32,6 +35,8 @@ app.post("/checkUserName", findUserName);
 app.put("/updateProfile", requireSignIn, updateProfile);
 
 app.post("/createPost", requireSignIn, createPost);
+
+app.get("/getPosts", requireSignIn, getPosts);
 
 app.get("/", (req, res) => {
   res.send("Welcome to homepage");

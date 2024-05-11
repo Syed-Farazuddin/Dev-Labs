@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { GlobalContext } from "../../context";
 import postIcon from "../../assets/person.png";
 import postImg from "../../assets/post3.jpg";
+import axios from "axios";
 import {
   AiFillBell,
   AiFillHome,
@@ -17,11 +18,28 @@ import { useNavigate } from "react-router-dom";
 export default function Homepage() {
   const navigate = useNavigate();
   const { userInfo } = useContext(GlobalContext);
+  const [post, setPosts] = useState();
+
+  const getPosts = async () => {
+    const { data } = await axios.get("http://localhost:4000/getPosts", {
+      headers: { Authorization: localStorage.getItem("token") },
+    });
+    setPosts(data?.posts);
+    // if (post) {
+    // console.log(post);
+    // }
+  };
 
   useEffect(() => {
     if (!userInfo) {
       navigate("/");
     }
+  }, []);
+
+  useEffect(() => {
+    getPosts();
+    console.log(post);
+    // setPosts(posts);
   }, []);
 
   const posts = [

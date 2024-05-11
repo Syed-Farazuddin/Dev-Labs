@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const UserDetailsModel = require("../Models/UserDetails");
-const userModel = require("../Models/UserAuth");
+const userModel = require("../Models/userModel");
 
 const requireSignIn = async (req, res, next) => {
   const token = req.header("Authorization");
@@ -19,7 +19,6 @@ const requireSignIn = async (req, res, next) => {
   }
   req.user = user;
   const registeredUser = await userModel.findOne({ _id: user._id });
-  console.log(registeredUser);
   const userDetails = await UserDetailsModel.findOne({
     email: registeredUser.email,
   });
