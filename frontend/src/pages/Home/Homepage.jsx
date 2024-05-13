@@ -1,8 +1,7 @@
+/* eslint-disable*/
 import React, { useContext, useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { GlobalContext } from "../../context";
-import postIcon from "../../assets/person.png";
-import postImg from "../../assets/post3.jpg";
 import axios from "axios";
 import {
   AiFillBell,
@@ -15,6 +14,7 @@ import { FaRegComment, FaRegHeart } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import PostContainer from "../../components/PostContainer";
+import UserDetails from "../../components/UserDetails";
 
 export default function Homepage() {
   const navigate = useNavigate();
@@ -26,9 +26,6 @@ export default function Homepage() {
     const { data } = await axios.get("http://localhost:4000/getPosts", {
       headers: { Authorization: localStorage.getItem("token") },
     });
-    // if (post) {
-    // console.log(post);
-    // }
     setPosts(data?.posts);
   };
 
@@ -40,8 +37,6 @@ export default function Homepage() {
 
   useEffect(() => {
     getPosts();
-    console.log(post);
-    // setPosts(posts);
   }, []);
 
   // const posts = [
@@ -89,9 +84,13 @@ export default function Homepage() {
         {/* Left container */}
         {postOption && (
           <div className="z-10 fixed left-40 right-40 top-30">
-            <PostContainer setPostOption={setPostOption} />
+            <PostContainer
+              setPostOption={setPostOption}
+              postOption={postOption}
+            />
           </div>
         )}
+
         <div className=" w-[30%] rounded-lg m-4 p-4 ">
           <div>
             <p className="flex items-center gap-2 cursor-pointer hover:bg-[#ffffff14] rounded-lg  text-xl mx-2 my-4 px-2 py-2">

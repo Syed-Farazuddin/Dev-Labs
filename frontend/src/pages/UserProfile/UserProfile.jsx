@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/person.png";
 import axios from "axios";
@@ -12,12 +13,15 @@ import { Link, useNavigate } from "react-router-dom";
 import UserDetails from "../../components/UserDetails";
 function UserProfile() {
   const { userInfo } = useContext(GlobalContext);
-  const [editDetails, setEditDetails] = useState(false);
+  const [editUserDetails, setEditUserDetails] = useState(false);
+
+  // const [editDetails, setEditDetails] = useState(false);
   // const [github, setGithub] = useState("");
   const [githubError, setGithubError] = useState();
   const [gitInfo, setGitInfo] = useState([]);
   const [leetcode, setLeetCode] = useState([]);
   const [CF, setCF] = useState([]);
+  const [scrollY, setScrollY] = useState(0);
 
   const navigate = useNavigate();
 
@@ -79,6 +83,16 @@ function UserProfile() {
     websiteURL: "",
   };
 
+  useEffect(() => {
+    if (editUserDetails) {
+      setScrollY(window.scrollY);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+      window.scrollTo(0, scrollY);
+    }
+  }, [editUserDetails, scrollY]);
+
   const getGitInfo = async () => {
     const response = await axios.get(
       `https://api.github.com/users/${profileInfo?.github}`
@@ -103,6 +117,7 @@ function UserProfile() {
     const response = await axios.get(
       "https://codeforces.com/api/user.info?handles=Syed_Farazuddin"
     );
+
     const { data } = response;
     setCF(data);
   };
@@ -127,6 +142,14 @@ function UserProfile() {
 
   return (
     <Layout>
+      {editUserDetails && (
+        <div className="z-10 fixed left-40 right-40 h-[100vh] top-10 bottom-20 w-auto overflow-auto no-scrollbar rounded-lg">
+          <UserDetails
+            setEditUserDetails={setEditUserDetails}
+            editUserDetails={editUserDetails}
+          />
+        </div>
+      )}
       <div className="flex justify-start items-start p-10 loginContainer  gap-10 max-w-7xl mx-auto ">
         <div className="flex items-center justify-center flex-col gap-8 ">
           <div className="px-6 py-8 bg-[#ffffff14] rounded-lg ">
@@ -139,8 +162,11 @@ function UserProfile() {
                     Syed Farazuddin
                   </h1>
                   <Link
-                    to={"/editDetails"}
+                    // to={"/editDetails"}
                     className="text-[#eeeeee] cursor-pointer"
+                    onClick={() => {
+                      setEditUserDetails(true);
+                    }}
                   >
                     <FaEdit />
                   </Link>
@@ -150,11 +176,11 @@ function UserProfile() {
                   Java | Spring boot
                 </p>
               </div>
-              {editDetails && (
+              {/* {editDetails && (
                 <>
                   <UserDetails />
                 </>
-              )}
+              )} */}
             </div>
             <div>
               {/* Profile items */}

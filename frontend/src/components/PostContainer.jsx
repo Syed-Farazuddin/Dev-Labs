@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+/* eslint-disable*/
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-function PostContainer({ setPostOption }) {
+import { AiOutlineClose } from "react-icons/ai";
+
+function PostContainer({ postOption, setPostOption }) {
+  const modelRef = useRef();
+
   const handlePostSubmit = async () => {
     if (description !== null || image !== null) {
-      const submitPost = await axios.post(
+      await axios.post(
         "http://localhost:4000/createPost",
         {
           description,
@@ -15,10 +20,44 @@ function PostContainer({ setPostOption }) {
     setPostOption(false);
     window.location.reload();
   };
+
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [scrollY, setScrollY] = useState(0);
+
+  const outsideClick = (e) => {
+    if (postOption && !modelRef.current.contains(e.target)) {
+      setPostOption(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", outsideClick);
+  }, []);
+
+  useEffect(() => {
+    if (postOption) {
+      setScrollY(window.scrollY);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+      window.scrollTo(0, scrollY);
+    }
+  });
+
   return (
-    <div className="bg-white flex flex-col items-center justify-center gap-10 rounded-xl py-5">
+    <div
+      className="bg-white flex flex-col items-center justify-center gap-10 rounded-xl py-5"
+      ref={modelRef}
+    >
+      <button
+        onClick={() => {
+          setPostOption(false);
+        }}
+        className="text-slate-900 self-end mr-20 font-extrabold bg-slate-200 px-2 py-2 rounded-full"
+      >
+        <AiOutlineClose className="text-lg" />
+      </button>
       <div className="flex flex-col gap-2 w-full justify-start items-center">
         <label
           htmlFor="description"
