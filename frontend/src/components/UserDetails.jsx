@@ -15,13 +15,17 @@ function UserDetails({ editUserDetails, setEditUserDetails }) {
   const [error, setError] = useState("");
 
   const handleUpdate = async () => {
-    console.log("Update");
-    const response = await axios.put(
+    const { data } = await axios.put(
       "http://localhost:4000/updateProfile",
       { name, bio, website, github, leetcode, codeforces },
       { headers: { Authorization: localStorage.getItem("token") } }
     );
-    console.log(response);
+    if (data.success) {
+      setEditUserDetails(false);
+      window.location.reload();
+    } else {
+      setError(data.message);
+    }
   };
 
   const handleOutsideClick = (e) => {
