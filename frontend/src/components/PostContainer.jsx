@@ -3,12 +3,12 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AiOutlineClose } from "react-icons/ai";
 
-function PostContainer({ postOption, setPostOption }) {
+function PostContainer({ postOption, setPostOption, post, setPosts }) {
   const modelRef = useRef();
 
   const handlePostSubmit = async () => {
     if (description !== null || image !== null) {
-      await axios.post(
+      const { data } = await axios.post(
         "http://localhost:4000/createPost",
         {
           description,
@@ -16,9 +16,10 @@ function PostContainer({ postOption, setPostOption }) {
         },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
+      // setPosts(...post, data.createPost);
     }
     setPostOption(false);
-    window.location.reload();
+    // window.location.reload();
   };
 
   const [description, setDescription] = useState("");
@@ -43,7 +44,9 @@ function PostContainer({ postOption, setPostOption }) {
       document.body.style.overflow = "auto";
       window.scrollTo(0, scrollY);
     }
-  });
+  }, []);
+
+  useEffect(() => {}, [handlePostSubmit]);
 
   return (
     <div

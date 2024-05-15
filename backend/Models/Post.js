@@ -7,7 +7,7 @@ const postSchema = new mongoose.Schema(
     },
     userID: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "userModel",
+      ref: "userDetails",
       required: true,
     },
     image: {

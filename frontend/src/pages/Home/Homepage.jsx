@@ -20,6 +20,7 @@ export default function Homepage() {
   const navigate = useNavigate();
   const { userInfo } = useContext(GlobalContext);
   const [post, setPosts] = useState();
+  const [users, setUsers] = useState();
   const [postOption, setPostOption] = useState(false);
 
   const getPosts = async () => {
@@ -27,6 +28,7 @@ export default function Homepage() {
       headers: { Authorization: localStorage.getItem("token") },
     });
     setPosts(data?.posts);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -39,45 +41,6 @@ export default function Homepage() {
     getPosts();
   }, []);
 
-  // const posts = [
-  //   {
-  //     name: "John",
-  //     subtitle: "kon bane ga don",
-  //     description:
-  //       "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
-  //     postUrl: "../../assets/postImg.png",
-  //     postIcon: postIcon,
-  //     likes: 20,
-  //     comments: 5,
-  //     shares: 4,
-  //     bookmarks: 10,
-  //   },
-  //   {
-  //     name: "Syed Faiz",
-  //     subtitle: "kaha se aate hai ye log",
-  //     description:
-  //       "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
-  //     postUrl: "../../assets/postImg.png",
-  //     postIcon: "../../assets/post2.jpeg",
-  //   },
-  //   {
-  //     name: "John",
-  //     subtitle: "kon bane ga don",
-  //     description:
-  //       "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
-  //     postUrl: "../../assets/post2.jpeg",
-  //     postIcon: "../../assets/post3.jpg",
-  //   },
-  //   {
-  //     name: "John",
-  //     subtitle: "kon bane ga don",
-  //     description:
-  //       "Lorem Ipsum is placeholder text commonly used in the design and printing industry. It is used to fill in spaces in a design layout",
-  //     postUrl: "../../assets/post3.jpg",
-  //     postIcon: "../../assets/post3.jpg",
-  //   },
-  // ];
-
   return (
     <Layout>
       <div className="bg-[#272727] flex  text-slate-300 max-w-7xl mx-auto loginContainer ">
@@ -85,6 +48,8 @@ export default function Homepage() {
         {postOption && (
           <div className="z-10 fixed left-40 right-40 top-30">
             <PostContainer
+              post={post}
+              setPosts={setPosts}
               setPostOption={setPostOption}
               postOption={postOption}
             />
@@ -142,7 +107,7 @@ export default function Homepage() {
                       alt=""
                     />
                     <div className="flex flex-col">
-                      <h1 className="text-[12px]">{"John"}</h1>
+                      <h1 className="text-[12px]">{item?.userID?.userName}</h1>
                       <p className="text-state-400 text-[10px]">
                         {"JOHN HAI DON"}
                       </p>
