@@ -4,8 +4,14 @@ const createPost = async (req, res) => {
   try {
     const { description, image } = req.body;
     userID = req.userDetails._id;
+    userAuth = req.user._id;
     if (description != null || image != null) {
-      const createPost = await PostModel.create({ description, userID, image });
+      const createPost = await PostModel.create({
+        description,
+        userID,
+        image,
+        userAuth,
+      });
       res.json({
         message: "Got details",
         success: true,
@@ -39,7 +45,10 @@ const fetchUsers = async (req, res) => {
 
 const getPosts = async (req, res) => {
   try {
-    const posts = await PostModel.find().populate("userID");
+    const posts = await PostModel.find()
+      .populate("userID")
+      .populate("userAuth")
+      .sort("-createdAt");
     // populate({
     // path: "userID",
     // select: ["name", "bio", "image_URL"],

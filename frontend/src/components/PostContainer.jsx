@@ -16,10 +16,19 @@ function PostContainer({ postOption, setPostOption, post, setPosts }) {
         },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
+      const userAuth = JSON.parse(localStorage.getItem("auth"));
+      console.log(userAuth);
       setPosts((prev) => {
-        return [...prev, { description, image }];
+        return [
+          {
+            description,
+            image,
+            userAuth: { userName: userAuth.name, email: userAuth.email },
+          },
+          ...prev,
+        ];
       });
-      // setPosts(...post, data.createPost);
+      console.log(post);
     }
     setPostOption(false);
     // window.location.reload();
@@ -30,7 +39,7 @@ function PostContainer({ postOption, setPostOption, post, setPosts }) {
   const [scrollY, setScrollY] = useState(0);
 
   const outsideClick = (e) => {
-    if (postOption && !modelRef.current.contains(e.target)) {
+    if (postOption && !modelRef?.current?.contains(e.target)) {
       setPostOption(false);
     }
   };

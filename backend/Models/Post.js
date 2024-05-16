@@ -10,6 +10,10 @@ const postSchema = new mongoose.Schema(
       ref: "userDetails",
       required: true,
     },
+    userAuth: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     image: {
       type: String,
     },

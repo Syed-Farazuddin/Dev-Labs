@@ -4,7 +4,10 @@ const userDetails = mongoose.Schema({
   email: {
     required: true,
     type: String,
-    unique: true,
+  },
+  userAuth: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
   details: {
     name: {

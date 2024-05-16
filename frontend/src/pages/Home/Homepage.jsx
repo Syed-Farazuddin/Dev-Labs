@@ -107,9 +107,13 @@ export default function Homepage() {
                       alt=""
                     />
                     <div className="flex flex-col">
-                      <h1 className="text-[12px]">{item?.userID?.userName}</h1>
+                      <h1 className="text-[12px]">
+                        {item?.userAuth?.userName === null
+                          ? userInfo.name
+                          : item?.userAuth?.userName}
+                      </h1>
                       <p className="text-state-400 text-[10px]">
-                        {"JOHN HAI DON"}
+                        {item?.userID?.details?.bio}
                       </p>
                     </div>
                   </div>
