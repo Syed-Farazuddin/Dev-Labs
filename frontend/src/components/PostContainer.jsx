@@ -16,6 +16,9 @@ function PostContainer({ postOption, setPostOption, post, setPosts }) {
         },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
+      setPosts((prev) => {
+        return [...prev, { description, image }];
+      });
       // setPosts(...post, data.createPost);
     }
     setPostOption(false);
@@ -36,15 +39,15 @@ function PostContainer({ postOption, setPostOption, post, setPosts }) {
     document.addEventListener("mousedown", outsideClick);
   }, []);
 
-  useEffect(() => {
-    if (postOption) {
-      setScrollY(window.scrollY);
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-      window.scrollTo(0, scrollY);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (postOption) {
+  //     setScrollY(window.scrollY);
+  //     document.body.style.overflow = "hidden";
+  //   } else {
+  //     document.body.style.overflow = "auto";
+  //     window.scrollTo(0, scrollY);
+  //   }
+  // }, []);
 
   useEffect(() => {}, [handlePostSubmit]);
 
