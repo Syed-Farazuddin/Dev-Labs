@@ -17,12 +17,14 @@ const requireSignIn = async (req, res, next) => {
       message: "Invalid Token!",
     });
   }
-  req.user = user;
-  const registeredUser = await userModel.findOne({ _id: user._id });
-  const userDetails = await UserDetailsModel.findOne({
-    email: registeredUser.email,
-  });
-  req.userDetails = userDetails;
+  if (req.user && req.user === null) {
+    req.user = user;
+    const registeredUser = await userModel.findOne({ _id: user._id });
+    const userDetails = await UserDetailsModel.findOne({
+      email: registeredUser.email,
+    });
+    req.userDetails = userDetails;
+  }
   next();
 };
 

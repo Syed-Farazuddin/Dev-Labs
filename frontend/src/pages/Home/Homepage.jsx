@@ -10,11 +10,10 @@ import {
   AiFillSetting,
   AiOutlineShareAlt,
 } from "react-icons/ai";
-import { FaRegComment, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegComment, FaRegHeart } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import PostContainer from "../../components/PostContainer";
-import UserDetails from "../../components/UserDetails";
 
 export default function Homepage() {
   const navigate = useNavigate();
@@ -23,6 +22,18 @@ export default function Homepage() {
   const [users, setUsers] = useState();
   const [postOption, setPostOption] = useState(false);
 
+  const handleLike = async (postDetails) => {
+    const userID = userInfo.id;
+    const { data } = await axios.post(
+      "http://localhost:4000/updateLikes",
+      { postDetails, userID },
+      {
+        headers: { Authorization: localStorage.getItem("token") },
+      }
+    );
+    console.log(data.post);
+  };
+
   const getPosts = async () => {
     const { data } = await axios.get("http://localhost:4000/getPosts", {
       headers: { Authorization: localStorage.getItem("token") },
@@ -30,7 +41,7 @@ export default function Homepage() {
     setPosts(data?.posts);
     console.log(data);
   };
-
+  useEffect(() => {}, [handleLike]);
   useEffect(() => {
     if (!userInfo) {
       navigate("/");
@@ -125,8 +136,18 @@ export default function Homepage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center justify-start gap-4 w-full">
-                      <div className="flex justify-start items-center gap-1 hover:text-red-500 cursor-pointer ">
-                        <FaRegHeart />
+                      <div
+                        className="flex justify-start items-center gap-1 hover:text-red-500 cursor-pointer"
+                        onClick={() => {
+                          handleLike(item);
+                        }}
+                        // import { FaHeart } from "react-icons/fa";
+                      >
+                        {item.likedBy.indexOf(userInfo.id) !== -1 ? (
+                          <FaHeart className="text-red-500" />
+                        ) : (
+                          <FaRegHeart className="" />
+                        )}
                         <p>{item?.likes}</p>
                       </div>
                       <div className="flex justify-start items-center gap-1 hover:text-blue-500 cursor-pointer">

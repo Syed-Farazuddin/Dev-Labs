@@ -18,6 +18,7 @@ const {
   createPost,
   getPosts,
   fetchUsers,
+  updateLikes,
 } = require("./controllers/PostControllers.js");
 
 app.use(cors());
@@ -46,6 +47,8 @@ app.post("/checkUserName", findUserName);
 app.put("/updateProfile", requireSignIn, updateProfile);
 
 app.post("/createPost", requireSignIn, createPost);
+
+app.post("/updateLikes", requireSignIn, updateLikes);
 
 app.listen(4000, () => {
   console.log("Server started at port 4000");

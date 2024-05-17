@@ -43,6 +43,39 @@ const fetchUsers = async (req, res) => {
   }
 };
 
+const updateLikes = async (req, res) => {
+  const post = req.body.postDetails;
+  const userID = req.body.userID;
+  if (post?.likedBy?.indexOf(userID) === -1) {
+    const updatedArr = [...post?.likedBy, userID];
+    const increasedLikes = post.likes + 1;
+    PostModel.updateOne(
+      { _id: post._id },
+      { $set: { likedBy: updatedArr, likes: increasedLikes } }
+    )
+      .then(() => {
+        res.json({ success: true, post });
+      })
+      .catch((e) => console.log(e));
+  } else {
+    const updatedArr = post.likedBy.filter((item) => {
+      return item !== userID;
+    });
+    const decreaseLikes = post.likes - 1;
+    PostModel.updateOne(
+      { _id: post._id },
+      { $set: { likedBy: updatedArr, likes: decreaseLikes } }
+    )
+      .then(() => {
+        res.json({ success: true, post });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+  res.json({ message: "Updated post details", post });
+};
+
 const getPosts = async (req, res) => {
   try {
     const posts = await PostModel.find()
@@ -62,4 +95,4 @@ const getPosts = async (req, res) => {
   }
 };
 
-module.exports = { createPost, deletePost, getPosts, fetchUsers };
+module.exports = { createPost, deletePost, getPosts, fetchUsers, updateLikes };

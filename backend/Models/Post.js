@@ -20,13 +20,19 @@ const postSchema = new mongoose.Schema(
     likes: {
       type: Number,
       default: 0,
-      likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "userModel" }],
     },
+    likedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "userModel",
+        default: 0,
+      },
+    ],
     comments: {
       type: Number,
       default: 0,
-      CommentedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "userModel" }],
     },
+    CommentedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "userModel" }],
     shares: {
       type: Number,
       default: 0,
