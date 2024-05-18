@@ -1,6 +1,8 @@
 const express = require("express");
 const connectDB = require("./db/index");
 const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
 const app = express();
 
 const {
@@ -21,6 +23,18 @@ const {
   updateLikes,
 } = require("./controllers/PostControllers.js");
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "Images");
+  },
+  filename: (req, file, cb) => {
+    console.log(file);
+    cb(null, Date.now, path.extname(file.originalname));
+  },
+});
+
+const upload = multer({ storage: storage });
+
 app.use(cors());
 app.use(express.json());
 
@@ -29,6 +43,10 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("Welcome to homepage");
 });
+
+const uploadImage = (req, res) => {
+  res.json({ message: "Image uploaded successfully" });
+};
 
 app.get("/getUsers", requireSignIn, fetchUsers);
 
@@ -44,11 +62,13 @@ app.post("/codingProfiles", getCodingProfiles);
 
 app.post("/checkUserName", findUserName);
 
-app.put("/updateProfile", requireSignIn, updateProfile);
-
 app.post("/createPost", requireSignIn, createPost);
 
 app.post("/updateLikes", requireSignIn, updateLikes);
+
+app.post("/uploadImage", upload.single("image"), uploadImage);
+
+app.put("/updateProfile", requireSignIn, updateProfile);
 
 app.listen(4000, () => {
   console.log("Server started at port 4000");
