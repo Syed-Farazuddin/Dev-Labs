@@ -3,8 +3,10 @@ const userModel = require("../Models/userModel");
 const createPost = async (req, res) => {
   try {
     const { description, image } = req.body;
+    console.log(req.user);
     userID = req.userDetails._id;
     userAuth = req.user._id;
+    console.log(userID, userAuth);
     if (description != null || image != null) {
       const createPost = await PostModel.create({
         description,

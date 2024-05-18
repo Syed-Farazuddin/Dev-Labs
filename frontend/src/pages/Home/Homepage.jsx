@@ -143,7 +143,7 @@ export default function Homepage() {
                         }}
                         // import { FaHeart } from "react-icons/fa";
                       >
-                        {item.likedBy.indexOf(userInfo.id) !== -1 ? (
+                        {item?.likedBy?.indexOf(userInfo.id) !== -1 ? (
                           <FaHeart className="text-red-500" />
                         ) : (
                           <FaRegHeart className="" />

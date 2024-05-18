@@ -11,20 +11,19 @@ const requireSignIn = async (req, res, next) => {
     });
   }
   const user = jwt.verify(token, process.env.JSON_SECRET_KEY);
+  // console.log(user);
   if (!user) {
     res.status(202).json({
       success: false,
       message: "Invalid Token!",
     });
   }
-  if (req.user && req.user === null) {
-    req.user = user;
-    const registeredUser = await userModel.findOne({ _id: user._id });
-    const userDetails = await UserDetailsModel.findOne({
-      email: registeredUser.email,
-    });
-    req.userDetails = userDetails;
-  }
+  req.user = user;
+  const registeredUser = await userModel.findOne({ _id: user._id });
+  const userDetails = await UserDetailsModel.findOne({
+    email: registeredUser.email,
+  });
+  req.userDetails = userDetails;
   next();
 };
 

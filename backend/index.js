@@ -26,6 +26,7 @@ const {
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "Images");
+    console.log(file);
   },
   filename: (req, file, cb) => {
     console.log(file);
@@ -43,10 +44,6 @@ connectDB();
 app.get("/", (req, res) => {
   res.send("Welcome to homepage");
 });
-
-const uploadImage = (req, res) => {
-  res.json({ message: "Image uploaded successfully" });
-};
 
 app.get("/getUsers", requireSignIn, fetchUsers);
 
@@ -66,7 +63,9 @@ app.post("/createPost", requireSignIn, createPost);
 
 app.post("/updateLikes", requireSignIn, updateLikes);
 
-app.post("/uploadImage", upload.single("image"), uploadImage);
+app.post("/uploadImage", upload.single("image"), (req, res) => {
+  res.json({ message: "Image uploaded successfully" });
+});
 
 app.put("/updateProfile", requireSignIn, updateProfile);
 

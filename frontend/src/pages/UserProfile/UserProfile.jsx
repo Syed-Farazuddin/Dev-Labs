@@ -11,10 +11,11 @@ import Layout from "../../components/Layout/Layout";
 import { GlobalContext } from "../../context";
 import { Link, useNavigate } from "react-router-dom";
 import UserDetails from "../../components/UserDetails";
+import UploadImage from "../../components/UploadImage";
 function UserProfile() {
   const { userInfo } = useContext(GlobalContext);
   const [editUserDetails, setEditUserDetails] = useState(false);
-
+  const [imageEdit, setImageEdit] = useState(false);
   // const [editDetails, setEditDetails] = useState(false);
   // const [github, setGithub] = useState("");
   const [githubError, setGithubError] = useState();
@@ -150,12 +151,24 @@ function UserProfile() {
           />
         </div>
       )}
+      {imageEdit && (
+        <div className="z-10 fixed left-40 right-40 h-[100vh] top-10 bottom-20 w-auto overflow-auto no-scrollbar rounded-lg">
+          <UploadImage setImageEdit={setImageEdit} />
+        </div>
+      )}
       <div className="flex justify-start items-start p-10 loginContainer  gap-10 max-w-7xl mx-auto ">
         <div className="flex items-center justify-center flex-col gap-8 ">
           <div className="px-6 py-8 bg-[#ffffff14] rounded-lg ">
             {/* About me */}
             <div className="flex justify-start items-center p-4 rounded-lg gap-2 flex-[20%] ">
-              <img className="rounded-full w-20 h-20 mr-2" src={logo} alt="" />
+              <img
+                className="rounded-full w-20 h-20 mr-2"
+                onClick={() => {
+                  setImageEdit(true);
+                }}
+                src={logo}
+                alt=""
+              />
               <div className="flex items-start justify-center flex-col gap-2 mt-4">
                 <div className="flex items-center justify-between gap-4 w-full">
                   <h1 className="text-2xl font-bold text-[#eeeeee] w-full">
