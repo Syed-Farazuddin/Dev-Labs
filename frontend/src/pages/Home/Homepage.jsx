@@ -10,16 +10,19 @@ import {
   AiFillSetting,
   AiOutlineShareAlt,
 } from "react-icons/ai";
+import { BsThreeDots } from "react-icons/bs";
 import { FaHeart, FaRegComment, FaRegHeart } from "react-icons/fa";
 import { CiBookmark } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import PostContainer from "../../components/PostContainer";
+import HandlePost from "../../components/HandlePost";
 
 export default function Homepage() {
   const navigate = useNavigate();
   const { userInfo } = useContext(GlobalContext);
   const [post, setPosts] = useState();
-  const [users, setUsers] = useState();
+  const [managePost, setManagePost] = useState(false);
+  const [editPostDetails, setEditPostDetails] = useState(null);
   const [postOption, setPostOption] = useState(false);
 
   const handleLike = async (postDetails) => {
@@ -31,7 +34,7 @@ export default function Homepage() {
         headers: { Authorization: localStorage.getItem("token") },
       }
     );
-    console.log(data.post);
+    getPosts();
   };
 
   const getPosts = async () => {
@@ -59,6 +62,7 @@ export default function Homepage() {
         {postOption && (
           <div className="z-10 fixed left-40 right-40 top-30">
             <PostContainer
+              getPosts={getPosts}
               post={post}
               setPosts={setPosts}
               setPostOption={setPostOption}
@@ -118,11 +122,28 @@ export default function Homepage() {
                       alt=""
                     />
                     <div className="flex flex-col">
-                      <h1 className="text-[12px]">
-                        {item?.userAuth?.userName === null
-                          ? userInfo.name
-                          : item?.userAuth?.userName}
-                      </h1>
+                      <div className="w-full flex justify-between items-center mb-2">
+                        <h1 className="text-[12px]">
+                          {item?.userAuth?.userName === null
+                            ? userInfo.name
+                            : item?.userAuth?.userName}
+                        </h1>
+                        <button
+                          className="relative"
+                          onClick={() => {
+                            setManagePost(true);
+                            setEditPostDetails(item);
+                          }}
+                        >
+                          <BsThreeDots />
+                        </button>
+                        {managePost && (
+                          <HandlePost
+                            getPosts={getPosts}
+                            editPostDetails={editPostDetails}
+                          />
+                        )}
+                      </div>
                       <p className="text-state-400 text-[10px]">
                         {item?.userID?.details?.bio}
                       </p>

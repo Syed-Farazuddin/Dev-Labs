@@ -3,7 +3,13 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { AiOutlineClose } from "react-icons/ai";
 
-function PostContainer({ postOption, setPostOption, post, setPosts }) {
+function PostContainer({
+  postOption,
+  setPostOption,
+  post,
+  setPosts,
+  getPosts,
+}) {
   const modelRef = useRef();
 
   const handlePostSubmit = async () => {
@@ -16,22 +22,9 @@ function PostContainer({ postOption, setPostOption, post, setPosts }) {
         },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
-      const userAuth = JSON.parse(localStorage.getItem("auth"));
-      console.log(userAuth);
-      setPosts((prev) => {
-        return [
-          {
-            description,
-            image,
-            userAuth: { userName: userAuth.name, email: userAuth.email },
-          },
-          ...prev,
-        ];
-      });
-      console.log(post);
+      getPosts();
     }
     setPostOption(false);
-    // window.location.reload();
   };
 
   const [description, setDescription] = useState("");

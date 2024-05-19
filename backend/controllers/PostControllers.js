@@ -29,8 +29,21 @@ const createPost = async (req, res) => {
   }
 };
 
-const deletePost = async () => {
-  console.log(`Delete post is requested`);
+const deletePost = async (req, res) => {
+  const { id } = req.body;
+  // console.log(id);
+  const deletedPost = await PostModel.findByIdAndDelete(id);
+  // console.log(x);
+  if (!deletedPost) {
+    return res.json({
+      success: false,
+      message: "Post not found",
+    });
+  }
+  return res.json({
+    success: true,
+    message: "Post deleted successfully",
+  });
 };
 
 const fetchUsers = async (req, res) => {

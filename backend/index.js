@@ -21,6 +21,7 @@ const {
   getPosts,
   fetchUsers,
   updateLikes,
+  deletePost,
 } = require("./controllers/PostControllers.js");
 
 const storage = multer.diskStorage({
@@ -60,6 +61,8 @@ app.post("/codingProfiles", getCodingProfiles);
 app.post("/checkUserName", findUserName);
 
 app.post("/createPost", requireSignIn, createPost);
+
+app.post("/deletePost", requireSignIn, deletePost);
 
 app.post("/updateLikes", requireSignIn, updateLikes);
 
