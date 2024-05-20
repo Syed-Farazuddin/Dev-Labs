@@ -121,7 +121,7 @@ export default function Homepage() {
                       src={item?.image}
                       alt=""
                     />
-                    <div className="flex flex-col">
+                    <div className="flex flex-col w-full">
                       <div className="w-full flex justify-between items-center mb-2">
                         <h1 className="text-[12px]">
                           {item?.userAuth?.userName === null
