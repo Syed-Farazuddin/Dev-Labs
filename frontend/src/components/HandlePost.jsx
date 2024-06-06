@@ -1,6 +1,6 @@
 /*eslint-disable*/
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import {} from "react-icons/fa";
 import { GrVolumeMute } from "react-icons/gr";
@@ -9,8 +9,13 @@ import { HiOutlineEmojiSad } from "react-icons/hi";
 import { TiCancel } from "react-icons/ti";
 import axios from "axios";
 
-function HandlePost({ editPostDetails, getPosts }) {
-  console.log(editPostDetails);
+function HandlePost({ editPostDetails, getPosts, popUpPos }) {
+  const popupRef = useRef(null);
+
+  // useEffect(() => {
+  //   if(!popupRef.clic)
+  // }, []);
+
   const handleDeletePost = async () => {
     const response = await axios.post(
       "http://localhost:4000/deletePost",
@@ -22,8 +27,18 @@ function HandlePost({ editPostDetails, getPosts }) {
     console.log(response);
     getPosts();
   };
+
   return (
-    <div className="absolute bg-white flex flex-col gap-4 w-fit right-0 opacity-70 top-2 text-slate-700">
+    <div
+      className="absolute bg-white flex flex-col gap-4 w-fit right-0 opacity-85 top-2 text-slate-700"
+      ref={popupRef}
+      style={{
+        position: "absolute",
+        top: `${popUpPos.top}px`,
+        left: `${popUpPos.left}px`,
+        right: "50%",
+      }}
+    >
       <ul className="flex items-start justify-center flex-col">
         <li className="flex items-center justify-start gap-2 hover:bg-slate-400 px-4 py-2 w-full">
           <HiOutlineEmojiSad />

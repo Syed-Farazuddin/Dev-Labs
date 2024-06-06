@@ -10,32 +10,16 @@ import {
   AiFillSetting,
   AiOutlineShareAlt,
 } from "react-icons/ai";
-import { BsThreeDots } from "react-icons/bs";
-import { FaHeart, FaRegComment, FaRegHeart } from "react-icons/fa";
-import { CiBookmark } from "react-icons/ci";
+
 import { useNavigate } from "react-router-dom";
 import PostContainer from "../../components/PostContainer";
-import HandlePost from "../../components/HandlePost";
+import PostCard from "../../components/PostCard";
 
 export default function Homepage() {
   const navigate = useNavigate();
   const { userInfo } = useContext(GlobalContext);
   const [post, setPosts] = useState();
-  const [managePost, setManagePost] = useState(false);
-  const [editPostDetails, setEditPostDetails] = useState(null);
   const [postOption, setPostOption] = useState(false);
-
-  const handleLike = async (postDetails) => {
-    const userID = userInfo.id;
-    const { data } = await axios.post(
-      "http://localhost:4000/updateLikes",
-      { postDetails, userID },
-      {
-        headers: { Authorization: localStorage.getItem("token") },
-      }
-    );
-    getPosts();
-  };
 
   const getPosts = async () => {
     const { data } = await axios.get("http://localhost:4000/getPosts", {
@@ -44,7 +28,6 @@ export default function Homepage() {
     setPosts(data?.posts);
     console.log(data);
   };
-  useEffect(() => {}, [handleLike]);
   useEffect(() => {
     if (!userInfo) {
       navigate("/");
@@ -57,7 +40,7 @@ export default function Homepage() {
 
   return (
     <Layout>
-      <div className="bg-[#272727] flex  text-slate-300 max-w-7xl mx-auto loginContainer ">
+      <div className="bg-[#272727] flex text-slate-300 max-w-7xl mx-auto loginContainer">
         {/* Left container */}
         {postOption && (
           <div className="z-10 fixed left-40 right-40 top-30">
@@ -111,81 +94,12 @@ export default function Homepage() {
           {post && post.length > 0 ? (
             <>
               {post.map((item, ind) => (
-                <div
-                  className="bg-[#ffffff14] rounded-lg px-8 py-4 flex flex-col gap-4"
+                <PostCard
+                  item={item}
                   key={ind}
-                >
-                  <div className="flex gap-2 items-center cursor-pointer">
-                    <img
-                      className="w-10 h-10 rounded-full"
-                      src={item?.image}
-                      alt=""
-                    />
-                    <div className="flex flex-col w-full">
-                      <div className="w-full flex justify-between items-center mb-2">
-                        <h1 className="text-[12px]">
-                          {item?.userAuth?.userName === null
-                            ? userInfo.name
-                            : item?.userAuth?.userName}
-                        </h1>
-                        <button
-                          className="relative"
-                          onClick={() => {
-                            setManagePost(true);
-                            setEditPostDetails(item);
-                          }}
-                        >
-                          <BsThreeDots />
-                        </button>
-                        {managePost && (
-                          <HandlePost
-                            getPosts={getPosts}
-                            editPostDetails={editPostDetails}
-                          />
-                        )}
-                      </div>
-                      <p className="text-state-400 text-[10px]">
-                        {item?.userID?.details?.bio}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="">
-                    <p>{item.description}</p>
-                  </div>
-                  <div className="w-[350px]">
-                    <img src={item?.image} alt="" />
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center justify-start gap-4 w-full">
-                      <div
-                        className="flex justify-start items-center gap-1 hover:text-red-500 cursor-pointer"
-                        onClick={() => {
-                          handleLike(item);
-                        }}
-                        // import { FaHeart } from "react-icons/fa";
-                      >
-                        {item?.likedBy?.indexOf(userInfo.id) !== -1 ? (
-                          <FaHeart className="text-red-500" />
-                        ) : (
-                          <FaRegHeart className="" />
-                        )}
-                        <p>{item?.likes}</p>
-                      </div>
-                      <div className="flex justify-start items-center gap-1 hover:text-blue-500 cursor-pointer">
-                        <FaRegComment />
-                        <p>{item?.comments}</p>
-                      </div>
-                      <div className="flex justify-start items-center gap-1 hover:text-orange-500 cursor-pointer">
-                        <AiOutlineShareAlt />
-                        <p>{item?.shares}</p>
-                      </div>
-                    </div>
-                    <div className="flex justify-start items-center gap-1 hover:text-green-500 cursor-pointer">
-                      <CiBookmark />
-                      <p>{item.bookmarks}</p>
-                    </div>
-                  </div>
-                </div>
+                  getPosts={getPosts}
+                  setPosts={setPosts}
+                />
               ))}
             </>
           ) : (
@@ -197,8 +111,75 @@ export default function Homepage() {
           )}
         </div>
         {/* Right container */}
-        <div className="w-[65%] border border-slate-400 m-4 rounded-lg p-4">
-          Right Container
+        <div className="w-[65%] border border-slate-400 m-4 rounded-lg max-h-fit">
+          <h3 className="text-xl text-slate-200 font-bold mb-4 px-8 mt-4">
+            What's Happening?
+          </h3>
+          <div className="flex mt-2 gap-4 p-4">
+            <img
+              className="w-60 h-full"
+              src="https://www.coe.int/documents/1155634/9685754/War+and+Terrorism.jpg/c3c5837f-1a4d-4d70-b277-d0adab2164ba?t=1393949660000"
+              alt=""
+            />
+            <h2 className="">
+              The fear of terror and massive killings around the world
+              <p className="w-full overflow-y-hidden h-24 text-slate-500 font-sans">
+                Acts of war or terrorism challenge the human rights framework
+                almost to the point where it seems to collapse. It is hard to
+                see any place for human rights when human life is deliberately
+                targeted, or where it is seen as "collateral damage" in the
+                course of mass bombing campaigns, which either directly or
+                indirectly lead to sickness, disease, suffering, destruction of
+                homes, and death
+              </p>
+              <span className="cursor-pointer hover:text-red-500 underline">
+                Read more
+              </span>
+            </h2>
+          </div>
+          <hr className="border-slate-600" />
+          <div className="flex mt-2 gap-4 p-4">
+            <img
+              className="w-60 h-full"
+              src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production%20Library/05-06-2024-UN-Photo-Guterres-Bloomberg.jpg/image1170x530cropped.jpg"
+              alt=""
+            />
+            <h2 className="">
+              Michael Bloomberg spotlights best steps now for urgent climate
+              action
+              <p className="w-full overflow-y-hidden h-24 text-slate-500 font-sans">
+                Michael Bloomberg is a business leader, the former three-time
+                mayor of New York City and the UN Secretary-General’s Special
+                Envoy for climate ambition and solutions. He is also an
+                undisputed leader in combatting climate change.
+              </p>
+              <span className="cursor-pointer hover:text-red-500 underline">
+                Read more
+              </span>
+            </h2>
+          </div>
+          <hr className="border-slate-600" />
+          <div className="flex mt-2 gap-4 p-4">
+            <img
+              className="w-60 h-full"
+              src="https://global.unitednations.entermediadb.net/assets/mediadb/services/module/asset/downloads/preset/Libraries/Production%20Library/05-10-2023_Unsplash_Saudi-Arabia.jpg/image1170x530cropped.jpg"
+              alt=""
+            />
+            <h2 className="">
+              World heading towards new temperature records, UN weather watchdog
+              warns
+              <p className="w-full overflow-y-hidden h-24 text-slate-500 font-sans">
+                At least one of the years between now and 2028 will very likely
+                set a new temperature record breaking through the crucial 1.5°C
+                temperature limit, the UN weather agency, WMO, said on
+                Wednesday.
+              </p>
+              <span className="cursor-pointer hover:text-red-500 underline">
+                Read more
+              </span>
+            </h2>
+          </div>
+          <hr className="border-slate-600" />
         </div>
       </div>
     </Layout>
