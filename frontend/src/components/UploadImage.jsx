@@ -22,7 +22,7 @@ function UploadImage({ setImageEdit }) {
     console.log(response);
   };
   return (
-    <div className="bg-white flex flex-col items-center justify-center gap-10 py-5 ">
+    <section className="bg-white flex flex-col items-center justify-center gap-10 py-5 ">
       <div>
         {image ? (
           <img
@@ -60,7 +60,7 @@ function UploadImage({ setImageEdit }) {
           Submit
         </button>
       </form>
-    </div>
+    </section>
   );
 }
 

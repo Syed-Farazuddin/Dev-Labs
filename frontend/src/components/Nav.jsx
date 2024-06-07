@@ -4,7 +4,7 @@ import Logo from "../assets/D.png";
 import { Link } from "react-router-dom";
 function Nav() {
   return (
-    <div className="flex py-4 px-8 justify-between items-center loginContainer">
+    <nav className="flex py-4 px-8 justify-between items-center loginContainer">
       <div className="flex items-center justify-center">
         <img className="h-14 w-14" src={Logo} alt="" />
         <p className="text-[30px]">ev Labs</p>
@@ -33,7 +33,7 @@ function Nav() {
           Sign in
         </Link>
       </div>
-    </div>
+    </nav>
   );
 }
 

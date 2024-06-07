@@ -54,7 +54,7 @@ function PostContainer({
   useEffect(() => {}, [handlePostSubmit]);
 
   return (
-    <div
+    <section
       className="bg-white flex flex-col items-center justify-center gap-10 rounded-xl py-5"
       ref={modelRef}
     >
@@ -112,7 +112,7 @@ function PostContainer({
           Post
         </button>
       </div>
-    </div>
+    </section>
   );
 }
 

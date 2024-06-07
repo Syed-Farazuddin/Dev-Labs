@@ -19,7 +19,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex justify-between items-center px-6 py-4  bg-[#353535] loginContainer">
+    <nav className="flex justify-between items-center px-6 py-4  bg-[#353535] loginContainer">
       <Link
         to={"/homepage"}
         className="text-2xl text-slate-300 font-serif font-bold "
@@ -63,6 +63,6 @@ export default function Header() {
           </button>
         </ul>
       </div>
-    </div>
+    </nav>
   );
 }

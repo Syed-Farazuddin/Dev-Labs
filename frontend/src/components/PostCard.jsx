@@ -48,7 +48,7 @@ function PostCard({ item, getPosts }) {
   useEffect(() => {}, [handleLike]);
 
   return (
-    <div className="bg-[#ffffff14] rounded-lg px-8 py-4 flex flex-col gap-4 relative">
+    <section className="bg-[#ffffff14] rounded-lg px-8 py-4 flex flex-col gap-4 relative">
       <div className="flex gap-2 items-center cursor-pointer">
         <img className="w-10 h-10 rounded-full" src={item?.image} alt="" />
         <div className="flex flex-col w-full">
@@ -122,7 +122,7 @@ function PostCard({ item, getPosts }) {
           <p>{item.bookmarks}</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
